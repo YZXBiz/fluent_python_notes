@@ -1,0 +1,12 @@
+format: jb-book
+root: README.md
+parts:
+  - caption: "Data Structures"
+    numbered: true
+    chapters:
+      - file: Data_Structures/chapter1/title.md
+        sections:
+          - file: Data_Structures/chapter1/chapter1.ipynb
+      - file: Data_Structures/chapter2/title.md
+        sections:
+          - file: Data_Structures/chapter2/chapter2.ipynb
