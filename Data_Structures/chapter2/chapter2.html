@@ -180,6 +180,7 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="title.html">2. An Array of Sequences</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">2.1. Overview of Built-In Sequences</a></li>
+
 </ul>
 </details></li>
 </ul>
@@ -354,7 +355,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -370,6 +373,20 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2.1. Overview of Built-In Sequences</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-are-not-just-immutable-lists">2.2. Tuples are not just Immutable Lists</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-records">2.2.1. 1. Tuples as Records</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-immutable-lists">2.2.2. 2. Tuples as Immutable Lists</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -456,7 +473,13 @@ True
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<p>We can see from below. MutuableSequence inherit all the methods from immutable sequence (which is sequence) and add some more methods to it.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;/Users/jason/Files/Practice/fluent-python-notes/assets/Screenshot 2025-02-24 at 23.34.15.png&#39;</span><span class="p">,</span>
       <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> 
@@ -464,6 +487,7 @@ True
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <a class="reference internal image-reference" href="../../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png"><img alt="../../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png" src="../../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png" style="width: 600px; height: 400px;" /></a>
 </div>
@@ -474,6 +498,39 @@ True
 <p class="admonition-title">Tip</p>
 <p>Mutable vs Immutable AND container vs flat. They are helpful to extrapolate what you konw about one sequence type to others.</p>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tuples-are-not-just-immutable-lists">
+<h1><span class="section-number">2.2. </span>Tuples are not just Immutable Lists<a class="headerlink" href="#tuples-are-not-just-immutable-lists" title="Link to this heading">#</a></h1>
+<section id="tuples-as-records">
+<h2><span class="section-number">2.2.1. </span>1. Tuples as Records<a class="headerlink" href="#tuples-as-records" title="Link to this heading">#</a></h2>
+<p>Because tuple’s items positions are fixed, it makes a good record. For example, a tuple to represent a city with name, year, and population.</p>
+<p>We often think of records as data structures with named fields, but the tuples are lightweight and require no extra memory to store field names. The tuple’s values are like fields in a record.</p>
+<p>Also, we can use tuple unpacking to assign the fields to variables.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Iterable unpacking is a generalization of tuple unpacking. It works with any iterable object.</p>
+</div>
+</section>
+<section id="tuples-as-immutable-lists">
+<h2><span class="section-number">2.2.2. </span>2. Tuples as Immutable Lists<a class="headerlink" href="#tuples-as-immutable-lists" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Clarity:</p>
+<ul>
+<li><p>when you see a tuple in code, you know it’s immutable.</p></li>
+</ul>
+</li>
+<li><p>Performance:</p>
+<ul>
+<li><p>A tuple uses less memory than a list.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Immutability of a tuple only affects the tuple itself, not the items inside it. If the items are mutable, they can change.</p>
+<p>For example, if a tuple holds a list, the list can change in place. The tuple’s immutability only prevents reassigning the variable holding the tuple.</p>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -521,6 +578,27 @@ True
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2.1. Overview of Built-In Sequences</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-are-not-just-immutable-lists">2.2. Tuples are not just Immutable Lists</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-records">2.2.1. 1. Tuples as Records</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-immutable-lists">2.2.2. 2. Tuples as Immutable Lists</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
