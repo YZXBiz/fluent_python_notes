@@ -486,8 +486,11 @@ True
 <p class="admonition-title">Caution</p>
 <p>Immutability of a tuple only affects the tuple itself, not the items inside it. If the items are mutable, they can change.</p>
 <p>For example, if a tuple holds a list, the list can change in place. The tuple’s immutability only prevents reassigning the variable holding the tuple.</p>
-</div>
+<h1 class="rubric" id="to-check-if-a-tuple-or-any-object-has-a-fixed-value-you-can-use-hash">to check if a tuple or any object has a fixed value, you can use hash()</h1>
+<p>t1 = (1, 2, [30, 40])
+hash(t1)  # TypeError: unhashable type: ‘list’</p>
 <p>However, this could be a source of bugs, so it’s better to avoid mutable items in tuples.</p>
+</div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <a class="reference internal image-reference" href="../_images/591d214be24e6459c2171627bf59aa5d044922f127654b01fdec70bed37dc86b.png"><img alt="../_images/591d214be24e6459c2171627bf59aa5d044922f127654b01fdec70bed37dc86b.png" src="../_images/591d214be24e6459c2171627bf59aa5d044922f127654b01fdec70bed37dc86b.png" style="width: 600px; height: 400px;" /></a>
