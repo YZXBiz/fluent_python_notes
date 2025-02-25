@@ -379,12 +379,18 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
+  <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="overview-of-built-in-sequences">
 <h1><span class="section-number">2.1. </span>Overview of Built-In Sequences<a class="headerlink" href="#overview-of-built-in-sequences" title="Link to this heading">#</a></h1>
@@ -402,16 +408,6 @@ document.write(`
 </li>
 </ul>
 <p>A container sequence stores items by keeping their addresses, while a flat sequence stores the actual items inside itself.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Every Python object in memory has a head with meta data. For python object, a float, has a value field and two metadata fields:</p>
-<ul class="simple">
-<li><p>ob_refcnt: reference count</p></li>
-<li><p>ob_type: pointer to the object’s type</p></li>
-<li><p>ob_fval: the actual float value</p></li>
-</ul>
-<p>An array of floats is smaller than a tuple of floats because an array stores raw values directly, while a tuple stores separate float objects, each taking extra space.</p>
-</div>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -429,6 +425,54 @@ document.write(`
 <div class="cell_output docutils container">
 <a class="reference internal image-reference" href="../../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png"><img alt="../../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png" src="../../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png" style="width: 600px; height: 400px;" /></a>
 </div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every Python object in memory has a head with meta data. For python object, a float, has a value field and two metadata fields:</p>
+<ul class="simple">
+<li><p>ob_refcnt: reference count</p></li>
+<li><p>ob_type: pointer to the object’s type</p></li>
+<li><p>ob_fval: the actual float value</p></li>
+</ul>
+<p>An array of floats is smaller than a tuple of floats because an array stores raw values directly, while a tuple stores separate float objects, each taking extra space.</p>
+</div>
+<p>Another way of grouping sequence types is by mutability:</p>
+<ul class="simple">
+<li><p>Mutable sequences: list, bytearray, array.array, collections.deque, and memoryview.</p></li>
+<li><p>Immutable sequences: tuple, str, and bytes.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">abc</span> 
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">Sequence</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">MutableSequence</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;/Users/jason/Files/Practice/fluent-python-notes/assets/Screenshot 2025-02-24 at 23.34.15.png&#39;</span><span class="p">,</span>
+      <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> 
+      <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png"><img alt="../../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png" src="../../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png" style="width: 600px; height: 400px;" /></a>
+</div>
+</div>
+<p>Example in [cpython/lib/_collections_abc.py]{<a class="github reference external" href="https://github.com/python/cpython/blob/main/Lib/_collections_abc.py">python/cpython</a>}</p>
+<p>we can see that the Sequence class is a subclass of Reversible and Collection. This means that all sequences must support the methods of these two classes.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Mutable vs Immutable AND container vs flat. They are helpful to extrapolate what you konw about one sequence type to others.</p>
 </div>
 </section>
 
