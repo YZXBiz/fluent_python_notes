@@ -177,6 +177,7 @@
 <li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. The Python Data Model</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Overview of Built-In Sequences</a></li>
 
+
 </ul>
 
     </div>
@@ -376,6 +377,12 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-are-not-just-immutable-lists">3. Tuples are not just Immutable Lists</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-records">3.1. Tuples as Records</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-immutable-lists">3.2. Tuples as Immutable Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-tuple-and-list-methods">3.3. Comparing Tuple and List Methods</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-sequences-and-iterables">4. Unpacking Sequences and Iterables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-to-grab-excess-items">4.1. Using * to grab excess items</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-with-in-function-calls-and-sequence-literals">4.2. Unpacking with * in Function Calls and Sequence Literals</a></li>
 </ul>
 </li>
 </ul>
@@ -478,7 +485,14 @@ True
 </li>
 <li><p>Performance:</p>
 <ul>
-<li><p>A tuple uses less memory than a list.</p></li>
+<li><p><strong>Tuple vs List Literals:</strong><br />
+The Python compiler creates a tuple literal in a single operation with one tuple constant. In contrast, a list literal is built by pushing each element separately and then assembling the list.</p></li>
+<li><p><strong>Copying Behavior:</strong><br />
+When you call <code class="docutils literal notranslate"><span class="pre">tuple(t)</span></code> on a tuple, it just returns the same tuple without copying. But calling <code class="docutils literal notranslate"><span class="pre">list(l)</span></code> on a list creates a new copy of that list.</p></li>
+<li><p><strong>Memory Allocation:</strong><br />
+A tuple’s fixed size means it uses exactly the memory it needs. Lists, however, are allocated extra space to make appending new items more efficient.</p></li>
+<li><p><strong>Storage of References:</strong><br />
+Tuples store their item references directly inside their structure. Lists, on the other hand, hold a pointer to an external array of references, and this extra level of indirection can lower CPU cache effectiveness.</p></li>
 </ul>
 </li>
 </ul>
@@ -496,6 +510,33 @@ hash(t1)  # TypeError: unhashable type: ‘list’</p>
 <a class="reference internal image-reference" href="../_images/591d214be24e6459c2171627bf59aa5d044922f127654b01fdec70bed37dc86b.png"><img alt="../_images/591d214be24e6459c2171627bf59aa5d044922f127654b01fdec70bed37dc86b.png" src="../_images/591d214be24e6459c2171627bf59aa5d044922f127654b01fdec70bed37dc86b.png" style="width: 600px; height: 400px;" /></a>
 </div>
 </div>
+</section>
+<section id="comparing-tuple-and-list-methods">
+<h2><span class="section-number">3.3. </span>Comparing Tuple and List Methods<a class="headerlink" href="#comparing-tuple-and-list-methods" title="Link to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tuples support all the read-only methods of lists except for <strong>reversed</strong>. This isn’t an issue because you can still use the built-in reversed() function since it works on any iterable.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="unpacking-sequences-and-iterables">
+<h1><span class="section-number">4. </span>Unpacking Sequences and Iterables<a class="headerlink" href="#unpacking-sequences-and-iterables" title="Link to this heading">#</a></h1>
+<p>Benefits of unpacking:</p>
+<ul class="simple">
+<li><p>It avoids uncessary and error-prone indexing.</p></li>
+<li><p>It works with any iterable objects (iterable is an object that implements the <strong>iter</strong> method), including generators and iterators which don’t support indexing.</p></li>
+<li><p>The only requirement is that the number of variables and the length of the iterable match. Either you use * to capture excess items or you unpack nested iterables.</p></li>
+</ul>
+<p>An elegant way to swap variables:</p>
+<p>Another example of unpackign is prefixing an argument with * when calling a function. This is called <code class="docutils literal notranslate"><span class="pre">argument</span> <span class="pre">unpacking</span></code>.</p>
+<section id="using-to-grab-excess-items">
+<h2><span class="section-number">4.1. </span>Using * to grab excess items<a class="headerlink" href="#using-to-grab-excess-items" title="Link to this heading">#</a></h2>
+<p>As you can see from the examples above, the * operator can be used to grab excess items in the middle or at the end of a sequence.</p>
+</section>
+<section id="unpacking-with-in-function-calls-and-sequence-literals">
+<h2><span class="section-number">4.2. </span>Unpacking with * in Function Calls and Sequence Literals<a class="headerlink" href="#unpacking-with-in-function-calls-and-sequence-literals" title="Link to this heading">#</a></h2>
+<p>The * operator can also be used in function calls to unpack arguments. This is useful when you want to pass a sequence to a function that takes multiple arguments.</p>
+<p>The * can also be used when defining a sequence literal. This is useful when you want to concatenate multiple sequences.</p>
 </section>
 </section>
 
@@ -558,6 +599,12 @@ hash(t1)  # TypeError: unhashable type: ‘list’</p>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-are-not-just-immutable-lists">3. Tuples are not just Immutable Lists</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-records">3.1. Tuples as Records</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-immutable-lists">3.2. Tuples as Immutable Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-tuple-and-list-methods">3.3. Comparing Tuple and List Methods</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-sequences-and-iterables">4. Unpacking Sequences and Iterables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-to-grab-excess-items">4.1. Using * to grab excess items</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-with-in-function-calls-and-sequence-literals">4.2. Unpacking with * in Function Calls and Sequence Literals</a></li>
 </ul>
 </li>
 </ul>
