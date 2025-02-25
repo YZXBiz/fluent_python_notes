@@ -535,17 +535,76 @@ hash(t1)  # TypeError: unhashable type: ‘list’</p>
 </div>
 <p>An elegant way to swap variables:</p>
 <p>Another example of unpackign is prefixing an argument with * when calling a function. This is called <code class="docutils literal notranslate"><span class="pre">argument</span> <span class="pre">unpacking</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nb">divmod</span><span class="p">(</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># (2, 4)</span>
+</pre></div>
+</div>
 <section id="using-to-grab-excess-items">
 <h2><span class="section-number">4.1. </span>Using * to grab excess items<a class="headerlink" href="#using-to-grab-excess-items" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rest</span>  <span class="c1"># (0, 1, [2, 3, 4])</span>
+
+<span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span>  <span class="c1"># (0, 4, [1, 2, 3])</span>
+
+<span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">head</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>  <span class="c1"># ([0, 1, 2], 3, 4)</span>
+</pre></div>
+</div>
 <p>As you can see from the examples above, the * operator can be used to grab excess items in the middle or at the end of a sequence.</p>
 </section>
 <section id="unpacking-with-in-function-calls-and-sequence-literals">
 <h2><span class="section-number">4.2. </span>Unpacking with * in Function Calls and Sequence Literals<a class="headerlink" href="#unpacking-with-in-function-calls-and-sequence-literals" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fun</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+<span class="n">fun</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>  <span class="c1"># 1 2 3 (4, 5, 6)</span>
+</pre></div>
+</div>
 <p>The * operator can also be used in function calls to unpack arguments. This is useful when you want to pass a sequence to a function that takes multiple arguments.</p>
 <p>The * can also be used when defining a sequence literal. This is useful when you want to concatenate multiple sequences.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">b</span><span class="p">]</span>
+<span class="n">c</span>  <span class="c1"># [1, 2, 3, 4, 5, 6]</span>
+
+<span class="p">(</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># (0, 1, 2, 3, 4)</span>
+</pre></div>
+</div>
 </section>
 <section id="nested-unpacking">
 <h2><span class="section-number">4.3. </span>Nested Unpacking<a class="headerlink" href="#nested-unpacking" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metro_areas</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;Tokyo&#39;</span><span class="p">,</span> <span class="s1">&#39;JP&#39;</span><span class="p">,</span> <span class="mf">36.933</span><span class="p">,</span> <span class="p">(</span><span class="mf">35.689722</span><span class="p">,</span> <span class="mf">139.691667</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;Delhi NCR&#39;</span><span class="p">,</span> <span class="s1">&#39;IN&#39;</span><span class="p">,</span> <span class="mf">21.935</span><span class="p">,</span> <span class="p">(</span><span class="mf">28.613889</span><span class="p">,</span> <span class="mf">77.208889</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;Mexico City&#39;</span><span class="p">,</span> <span class="s1">&#39;MX&#39;</span><span class="p">,</span> <span class="mf">20.142</span><span class="p">,</span> <span class="p">(</span><span class="mf">19.433333</span><span class="p">,</span> <span class="o">-</span><span class="mf">99.133333</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;New York-Newark&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="mf">20.104</span><span class="p">,</span> <span class="p">(</span><span class="mf">40.808611</span><span class="p">,</span> <span class="o">-</span><span class="mf">74.020386</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;Sao Paulo&#39;</span><span class="p">,</span> <span class="s1">&#39;BR&#39;</span><span class="p">,</span> <span class="mf">19.649</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mf">23.547778</span><span class="p">,</span> <span class="o">-</span><span class="mf">46.635833</span><span class="p">)),</span>
+<span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:15}</span><span class="s1"> | </span><span class="si">{:^9}</span><span class="s1"> | </span><span class="si">{:^9}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;lat.&#39;</span><span class="p">,</span> <span class="s1">&#39;long.&#39;</span><span class="p">))</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:15}</span><span class="s1"> | </span><span class="si">{:9.4f}</span><span class="s1"> | </span><span class="si">{:9.4f}</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">cc</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="p">(</span><span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span> <span class="ow">in</span> <span class="n">metro_areas</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">longitude</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">))</span>
+
+<span class="c1"># Output</span>
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                |   lat.    |   long.  
+Mexico City     |   19.4333 |  -99.1333
+New York-Newark |   40.8086 |  -74.0204
+Sao Paulo       |  -23.5478 |  -46.6358
+</pre></div>
+</div>
+</div>
+</div>
 <p>Function here is using nested unpacking to extract the latitude and longitude from the tuple. This is a good example of how unpacking can make code more readable.</p>
 </section>
 </section>
