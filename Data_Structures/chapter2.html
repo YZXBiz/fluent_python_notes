@@ -408,20 +408,7 @@ document.write(`
 </li>
 </ul>
 <p>A container sequence stores items by keeping their addresses, while a flat sequence stores the actual items inside itself.</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;/var/folders/5r/0f8bfrvn6_z4rmz0g0thdv900000gn/T/TemporaryItems/NSIRD_screencaptureui_5jIQpT/Screenshot 2025-02-23 at 22.37.48.png&#39;</span><span class="p">,</span> 
-      <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> 
-      <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <a class="reference internal image-reference" href="../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png"><img alt="../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png" src="../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png" style="width: 600px; height: 400px;" /></a>
 </div>
@@ -457,26 +444,13 @@ True
 </div>
 </div>
 <p>We can see from below. MutuableSequence inherit all the methods from immutable sequence (which is sequence) and add some more methods to it.</p>
-<div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
-<summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;/Users/jason/Files/Practice/fluent-python-notes/assets/Screenshot 2025-02-24 at 23.34.15.png&#39;</span><span class="p">,</span>
-      <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> 
-      <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <a class="reference internal image-reference" href="../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png"><img alt="../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png" src="../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png" style="width: 600px; height: 400px;" /></a>
 </div>
 </div>
-<p>Example in [cpython/lib/_collections_abc.py]{<a class="github reference external" href="https://github.com/python/cpython/blob/main/Lib/_collections_abc.py">python/cpython</a>}</p>
-<p>we can see that the Sequence class is a subclass of Reversible and Collection. This means that all sequences must support the methods of these two classes.</p>
+<p>Example in <a class="reference external" href="https://github.com/python/cpython/blob/main/Lib/_collections_abc.py">cpython/lib/_collections_abc.py</a></p>
+<p>We can see that the Sequence class is a subclass of Reversible and Collection. This means that all sequences must support the methods of these two classes.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Mutable vs Immutable AND container vs flat. They are helpful to extrapolate what you konw about one sequence type to others.</p>
