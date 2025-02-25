@@ -529,6 +529,10 @@ hash(t1)  # TypeError: unhashable type: ‘list’</p>
 <li><p>The only requirement is that the number of variables and the length of the iterable match. Either you use * to capture excess items or you unpack nested iterables.</p></li>
 </ul>
 <p>Unpacking a tuple</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lax_coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="mf">33.9425</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.408056</span><span class="p">)</span>
+<span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span> <span class="o">=</span> <span class="n">lax_coordinates</span>
+</pre></div>
+</div>
 <p>An elegant way to swap variables:</p>
 <p>Another example of unpackign is prefixing an argument with * when calling a function. This is called <code class="docutils literal notranslate"><span class="pre">argument</span> <span class="pre">unpacking</span></code>.</p>
 <section id="using-to-grab-excess-items">
