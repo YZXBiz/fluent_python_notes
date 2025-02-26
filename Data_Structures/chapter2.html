@@ -179,6 +179,7 @@
 
 
 
+
 </ul>
 
     </div>
@@ -390,6 +391,13 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">5. Slicing</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-slices-and-rangs-exclude-the-last-item">5.1. Why Slices and Rangs Exclude the Last Item</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slice-objects">5.2. Slice Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-slicing-and-ellipsis">5.3. Multidimensional Slicing and Ellipsis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-to-slices">5.4. Assigning to Slices</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-with-sequences">6. Using + and * with Sequences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-of-lists">6.1. Building Lists of Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-assignment-with-sequences">6.2. Augmented Assignment with Sequences</a></li>
 </ul>
 </li>
 </ul>
@@ -728,6 +736,110 @@ eccb
 </pre></div>
 </div>
 </section>
+<section id="multidimensional-slicing-and-ellipsis">
+<h2><span class="section-number">5.3. </span>Multidimensional Slicing and Ellipsis<a class="headerlink" href="#multidimensional-slicing-and-ellipsis" title="Link to this heading">#</a></h2>
+<p>The [] operator can take multiple slices separated by commas. This is useful for multidimensional arrays.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># array([1, 5, 9])</span>
+</pre></div>
+</div>
+<p>Except for memoryview, the <code class="docutils literal notranslate"><span class="pre">built-in</span> <span class="pre">sequence</span> <span class="pre">types</span></code> are on-dimensional, so they support only one index or slice, and not a tuple of them.</p>
+<p>The ellipsis-written as <code class="docutils literal notranslate"><span class="pre">...</span></code> (this is three full stops, not the ASCII ellipsis character) is recognized as a token by the Python parser. It is an instance of the <code class="docutils literal notranslate"><span class="pre">ellipsis</span></code> object, the only one of its type. You can use it in place of one or more colons in a slicing specification.</p>
+<p>NumPy uses … as a shortcut when slicing arrays of many dimensions. For example, if x is a 4D array, x[i, …] is a shortcut for x[i, :, :, :,].</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1"># [[ 0  1  2  3]</span>
+<span class="c1">#  [ 4  5  6  7]</span>
+<span class="c1">#  [ 8  9 10 11]]</span>
+
+<span class="n">a</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># array([1, 5, 9])</span>
+</pre></div>
+</div>
+</section>
+<section id="assigning-to-slices">
+<h2><span class="section-number">5.4. </span>Assigning to Slices<a class="headerlink" href="#assigning-to-slices" title="Link to this heading">#</a></h2>
+<p>Mutable sequences can be grafted, excised and modified in place using slice notation on the left side of an assignment statement.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">l</span>
+<span class="c1"># [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+
+<span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+<span class="n">l</span>
+<span class="c1"># [0, 1, 20, 30, 5, 6, 7, 8, 9]</span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>When the target of the assignment is a slice, the right side must be an iterable object, even if it has just one item.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="c1"># TypeError: can only assign an iterable</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="using-and-with-sequences">
+<h1><span class="section-number">6. </span>Using + and * with Sequences<a class="headerlink" href="#using-and-with-sequences" title="Link to this heading">#</a></h1>
+<section id="building-lists-of-lists">
+<h2><span class="section-number">6.1. </span>Building Lists of Lists<a class="headerlink" href="#building-lists-of-lists" title="Link to this heading">#</a></h2>
+<p>Both + and * return a new sequence, and never modify their operands.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Be aware of expressions like a * n when a is a sequence containing mutable items. This will create a list with n references to the same mutable item. In other words, it’s a shallow copy and if the item is modified, all references will reflect the change.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="n">l</span>
+<span class="c1"># [[&#39;_&#39;, &#39;_&#39;, &#39;_&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;_&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;_&#39;]]</span>
+<span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>
+<span class="n">l</span>
+<span class="c1"># [[&#39;_&#39;, &#39;_&#39;, &#39;X&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;X&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;X&#39;]]</span>
+</pre></div>
+</div>
+<p>Essentially, this is behaves like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="n">board</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The correct way to create a list of lists is to use a list comprehension.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">l</span>
+<span class="c1"># [[&#39;_&#39;, &#39;_&#39;, &#39;_&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;_&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;_&#39;]]</span>
+<span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>
+<span class="n">l</span>
+<span class="c1"># [[&#39;_&#39;, &#39;_&#39;, &#39;_&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;X&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;_&#39;]]</span>
+</pre></div>
+</div>
+<p>Above behaves like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">board</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="augmented-assignment-with-sequences">
+<h2><span class="section-number">6.2. </span>Augmented Assignment with Sequences<a class="headerlink" href="#augmented-assignment-with-sequences" title="Link to this heading">#</a></h2>
+<p>The dundar method __iadd__ is called when the += operator is used. If this method is not implemented, Python falls back to calling __add__. In this case, these two operations are equivalent.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="c1"># 140071366748992</span>
+<span class="n">l</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="n">l</span>
+<span class="c1"># [1, 2, 3, 1, 2, 3]</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="c1"># 140071366748992</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The identity of the object bound to a may or may not change after the operation. It depends on the avaialibility of __iadd__ method.</p>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -801,6 +913,13 @@ eccb
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">5. Slicing</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-slices-and-rangs-exclude-the-last-item">5.1. Why Slices and Rangs Exclude the Last Item</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slice-objects">5.2. Slice Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-slicing-and-ellipsis">5.3. Multidimensional Slicing and Ellipsis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-to-slices">5.4. Assigning to Slices</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-with-sequences">6. Using + and * with Sequences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-of-lists">6.1. Building Lists of Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-assignment-with-sequences">6.2. Augmented Assignment with Sequences</a></li>
 </ul>
 </li>
 </ul>
