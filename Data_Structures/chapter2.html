@@ -406,6 +406,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">7. list.sort and the sorted Built-In Function</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">8. When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">8.1. Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-views">8.2. Memory Views</a></li>
 </ul>
 </li>
 </ul>
@@ -1053,6 +1054,23 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 <p>You can imagine that once typecode is specified, the array will only store the values in that type. This is why it’s more efficient than a list.</p>
 </div>
 </section>
+<section id="memory-views">
+<h2><span class="section-number">8.2. </span>Memory Views<a class="headerlink" href="#memory-views" title="Link to this heading">#</a></h2>
+<p>The built-in memoryview class is a shared-memory sequence type that lets you handle slices of arrays without copying bytes. It’s a good way to expose the buffer protocol in Python.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">array</span><span class="w"> </span><span class="kn">import</span> <span class="n">array</span>
+<span class="n">octets</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">m1</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">octets</span><span class="p">)</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="c1"># [0, 1, 2, 3, 4]</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="c1"># [2, 3, 4]</span>
+<span class="n">m2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">22</span>
+<span class="n">octets</span>
+<span class="c1"># array(&#39;B&#39;, [0, 1, 22, 3, 4])</span>
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1139,6 +1157,7 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">7. list.sort and the sorted Built-In Function</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">8. When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">8.1. Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-views">8.2. Memory Views</a></li>
 </ul>
 </li>
 </ul>
