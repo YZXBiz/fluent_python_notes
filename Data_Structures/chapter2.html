@@ -935,6 +935,28 @@ BINARY_OP (+=): Perform the augmented assignment, modifying the list in place</p
 The critical insight is that step 4 successfully modifies the list, but step 5 fails because tuples don’t allow item assignment.</p></li>
 <li><p>This is why the list inside the tuple is modified even though the code raises an exception - the mutation happens before the assignment attempt that fails.</p></li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>Avoid putting mutable items in tuples</p>
+<ul>
+<li><p>It’s confusing because while you can’t change the tuple itself, its mutable contents can change</p></li>
+</ul>
+</li>
+<li><p>Augmented assignment (+=) isn’t a single operation</p>
+<ul>
+<li><p>It does two things: modifies the value AND tries to store it back</p></li>
+<li><p>This split behavior can lead to surprising “half-done” results when it fails</p></li>
+</ul>
+</li>
+<li><p>Looking at Python’s internal instructions can be helpful</p></li>
+<li><p>Seeing how Python breaks down your code helps understand these strange behaviors</p>
+<ul>
+<li><p>It’s not as complicated as it seems and reveals what’s really happening</p></li>
+</ul>
+</li>
+</ul>
+</div>
 </section>
 </section>
 
