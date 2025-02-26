@@ -398,6 +398,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-with-sequences">6. Using + and * with Sequences</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-of-lists">6.1. Building Lists of Lists</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-assignment-with-sequences">6.2. Augmented Assignment with Sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-assignment-puzzler">6.3. A += Assignment Puzzler</a></li>
 </ul>
 </li>
 </ul>
@@ -839,6 +840,101 @@ eccb
 <p class="admonition-title">Note</p>
 <p>The identity of the object bound to a may or may not change after the operation. It depends on the avaialibility of __iadd__ method.</p>
 </div>
+<p>In general, for mutable sequences, like list, bytearray, and array.array, the __iadd__ method is implemented and it changes the target object in place.</p>
+<p>However, for immutable sequences, like tuple, str, and bytes, the __iadd__ method is not implemented.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="c1"># 140071366748992</span>
+<span class="n">l</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="n">l</span>
+<span class="c1"># [1, 2, 3, 1, 2, 3]</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="c1"># 140071366748992</span>
+<span class="n">t</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="c1"># 140071366748992</span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Repeated concatenation of immutable sequences is inefficeint, because instead of just appending new items, Python has to copy the whole target sequence to create a new one with the new items concatenated.</p>
+</div>
+</section>
+<section id="a-assignment-puzzler">
+<h2><span class="section-number">6.3. </span>A += Assignment Puzzler<a class="headerlink" href="#a-assignment-puzzler" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
+<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;tuple&#39; object does not support item assignment
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, [30, 40, 50, 60])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>+= on a list first modifies the list in-place (which works)</p></li>
+<li><p>Then tries to assign the modified list back to the tuple (which fails)</p></li>
+<li><p>But by then, the list is already modified</p></li>
+</ul>
+<p>Let’s take a closeer look at the bytecode.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dis</span>
+<span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="s2">&quot;s[a] += b&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0           0 RESUME                   0
+
+  1           2 LOAD_NAME                0 (s)
+              4 LOAD_NAME                1 (a)
+              6 COPY                     2
+              8 COPY                     2
+             10 BINARY_SUBSCR
+             20 LOAD_NAME                2 (b)
+             22 BINARY_OP               13 (+=)
+             26 SWAP                     3
+             28 SWAP                     2
+             30 STORE_SUBSCR
+             34 LOAD_CONST               0 (None)
+             36 RETURN_VALUE
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Bytecode Explanation</em></p>
+<ul class="simple">
+<li><p>The bytecode shows that s[a] += b (which corresponds to t[2] += [50, 60]) is actually a sequence of operations:</p></li>
+<li><p>LOAD_NAME and COPY operations: Load the container (t) and index (2)
+BINARY_SUBSCR: Get the item at t[2] (the list [30, 40])</p></li>
+<li><p>LOAD_NAME: Load the value to add ([50, 60])
+BINARY_OP (+=): Perform the augmented assignment, modifying the list in place</p></li>
+<li><p>STORE_SUBSCR: Try to store the result back into the original location t[2]
+The critical insight is that step 4 successfully modifies the list, but step 5 fails because tuples don’t allow item assignment.</p></li>
+<li><p>This is why the list inside the tuple is modified even though the code raises an exception - the mutation happens before the assignment attempt that fails.</p></li>
+</ul>
 </section>
 </section>
 
@@ -920,6 +1016,7 @@ eccb
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-with-sequences">6. Using + and * with Sequences</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-of-lists">6.1. Building Lists of Lists</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-assignment-with-sequences">6.2. Augmented Assignment with Sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-assignment-puzzler">6.3. A += Assignment Puzzler</a></li>
 </ul>
 </li>
 </ul>
