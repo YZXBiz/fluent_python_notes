@@ -180,6 +180,7 @@
 
 
 
+
 </ul>
 
     </div>
@@ -401,6 +402,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-assignment-puzzler">6.3. A += Assignment Puzzler</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">7. list.sort and the sorted Built-In Function</a></li>
 </ul>
 
             </nav>
@@ -959,6 +961,30 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 </div>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="list-sort-and-the-sorted-built-in-function">
+<h1><span class="section-number">7. </span>list.sort and the sorted Built-In Function<a class="headerlink" href="#list-sort-and-the-sorted-built-in-function" title="Link to this heading">#</a></h1>
+<p>The list.sort method sorts a list in place–that is, without makign a copy. It returns None to remind us that it changes the target object, and does not create a new list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a common pattern in Python: functions or methods that change an object in place should return None to make it clear to the caller that the object itself was changed, and no new object was created.</p>
+</div>
+<p>However, this also has a drawback. You can’t chain multiple methods teogether. For example, you can’t call sort() and then call another method on the same line.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grape&#39;</span><span class="p">,</span> <span class="s1">&#39;raspberry&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">]</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c1"># returns None</span>
+
+<span class="c1"># Can&#39;t do this</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="c1"># AttributeError: &#39;NoneType&#39; object has no attribute &#39;reverse&#39;</span>
+</pre></div>
+</div>
+<p>And of course, method that returns a new object can be chained together.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grape&#39;</span><span class="p">,</span> <span class="s1">&#39;raspberry&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+<p>Sorted accepts any iterable object, including immutable sequences and generators. Regardless of the type of the input, sorted always returns a newly created list.</p>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1041,6 +1067,7 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-assignment-puzzler">6.3. A += Assignment Puzzler</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">7. list.sort and the sorted Built-In Function</a></li>
 </ul>
 
   </nav></div>
