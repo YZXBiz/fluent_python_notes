@@ -181,6 +181,7 @@
 
 
 
+
 </ul>
 
     </div>
@@ -403,6 +404,10 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">7. list.sort and the sorted Built-In Function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">8. When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">8.1. Arrays</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -984,6 +989,57 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 </pre></div>
 </div>
 <p>Sorted accepts any iterable object, including immutable sequences and generators. Regardless of the type of the input, sorted always returns a newly created list.</p>
+<p>Both list.sort and sorted take two optional, keyword-only arguments:</p>
+<ul class="simple">
+<li><p>reverse: If True, the items are returned in descending order. The default is False.</p></li>
+<li><p>key: A one-argument function that <code class="docutils literal notranslate"><span class="pre">will</span> <span class="pre">be</span> <span class="pre">applied</span> <span class="pre">to</span> <span class="pre">each</span> <span class="pre">item</span> <span class="pre">to</span> <span class="pre">produce</span> <span class="pre">its</span> <span class="pre">sorting</span> <span class="pre">key</span></code>. For example, when sorting a list of strings, you can use str.lower as the key to perform a case-insensitive sort. Then, Python compares the key-transformed values to determine the final order.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grape&#39;</span><span class="p">,</span> <span class="s1">&#39;raspberry&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">]</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
+<span class="c1"># [&#39;apple&#39;, &#39;grape&#39;, &#39;banana&#39;, &#39;raspberry&#39;]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, Python sorts strings lexicographically by character code. ASCII uppercase letters come before lowercase letters. Sorting Unicode Text can be more complex.</p>
+</div>
+<p>Once your sequences are sorted, they can be very efficiently searched using the bisect module (binary search). THe python module bisect.insort also make sure that the list remains sorted after inserting a new item.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="when-a-list-is-not-the-answer">
+<h1><span class="section-number">8. </span>When a List is Not the Answer<a class="headerlink" href="#when-a-list-is-not-the-answer" title="Link to this heading">#</a></h1>
+<p>The list is flexible and easy to use but it’s not always the best choice. Here are some alternatives:</p>
+<ul class="simple">
+<li><p>Array: A more efficient way to store a sequence of basic values like numbers. It can save a lot of memory when you need to handle millions of floating point values. The reason is that an array is just a thin wrapper around a C array, which means it doesn’t store the type of each item, just the value VS a list which stores the type of each item.</p></li>
+<li><p>Deque (doulbe-ended queue): A thread-safe list designed for fast inserting and removing from both ends.</p></li>
+<li><p>Set: If you need to constantly check for the existence of an item, a set is more appropriate. It has a constant time complexity for this operation, while a list has a linear time complexity.</p></li>
+</ul>
+<section id="arrays">
+<h2><span class="section-number">8.1. </span>Arrays<a class="headerlink" href="#arrays" title="Link to this heading">#</a></h2>
+<p>If a list only contains numbers, an array.array is more efficient. It stores the numbers in a compact, contiguous block of memory, and it’s more efficient than a list for some operations.</p>
+<p>It supports all mutable sequence operations (including .pop, .insert, and .extend), and additional methods for fast loading and saving such as .frombytes and .tofile.</p>
+<p>A Python array is as lean as C array. An array of float values does not hold full-fledged float instances, but only the packed bytes representing their machine values-similar to an array of double in the C language.</p>
+<p>When creating an array, you provide a typecode, a letter to specify the type of items in the array. For example, ‘d’ for double-precision floating-point numbers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">array</span><span class="w"> </span><span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">random</span>
+
+<span class="n">floats</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">)))</span>
+<span class="n">floats</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># 0.47160296998661593</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;floats.bin&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">floats</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Specifically, there are some common typecodes:</p>
+<p>“d”
+: double precision float. Each item takes 8 bytes.</p>
+<p>“b”
+: signed char. Each item takes 1 byte.</p>
+<p>“B”
+: unsigned char. Each item takes 1 byte.</p>
+<p>“u”
+: Unicode character. Each item takes 2 bytes.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1068,6 +1124,10 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">7. list.sort and the sorted Built-In Function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">8. When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">8.1. Arrays</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
