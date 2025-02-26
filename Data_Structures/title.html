@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Overview of Built-In Sequences &#8212; Fluent Python Notes</title>
+    <title>Title Page &#8212; Fluent Python Notes</title>
   
   
   
@@ -57,9 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter2/chapter2';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Data_Structures/title';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Overview of Built-In Sequences" href="chapter1.html" />
+    <link rel="prev" title="Welcome to Fluent Python Notes" href="../index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -122,8 +124,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -142,7 +142,7 @@
     
   
 
-<a class="navbar-brand logo" href="../README.html">
+<a class="navbar-brand logo" href="../index.html">
   
   
   
@@ -168,19 +168,20 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="../README.html">
-                    <no title>
+                <a class="reference internal" href="../index.html">
+                    Welcome to Fluent Python Notes
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Data_Structures/chapter1.html">1. The Python Data Model</a></li>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Data Structures Overview</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="chapter1.html">The Python Data Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chapter2.html">Overview of Built-In Sequences</a></li>
+
+
+
 </ul>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Data_Structures/chapter2.html">1. Overview of Built-In Sequences</a></li>
-
-
-
+</details></li>
 </ul>
 
     </div>
@@ -252,7 +253,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter2/chapter2.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FData_Structures/title.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -282,7 +283,7 @@
       
       
       
-      <li><a href="../_sources/chapter2/chapter2.ipynb" target="_blank"
+      <li><a href="../_sources/Data_Structures/title.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -292,7 +293,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -364,7 +365,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Overview of Built-In Sequences</h1>
+    <h1>Title Page</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -378,41 +379,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section id="overview-of-built-in-sequences">
-<h1><em>Overview of Built-In Sequences</em><a class="headerlink" href="#overview-of-built-in-sequences" title="Link to this heading">#</a></h1>
-<ul class="simple">
-<li><p>Container Sequences</p>
-<ul>
-<li><p>Can hold items of different types, including nested containers. Some examples: list, tuple, and collections.deque.</p></li>
-</ul>
-</li>
-<li><p>Flat Sequences</p>
-<ul>
-<li><p>Can hold items of one type. Some examples: str, bytes, bytearray, memoryview, and array.array.</p></li>
-</ul>
-</li>
-</ul>
-<p>A container sequence holds references to the objects it contains, which may be of any
-type, while a flat sequence stores the value of its contents in its own memory space,
-not as distinct Python objects.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span><span class="p">(</span><span class="s1">&#39;/var/folders/5r/0f8bfrvn6_z4rmz0g0thdv900000gn/T/TemporaryItems/NSIRD_screencaptureui_5jIQpT/Screenshot 2025-02-23 at 22.37.48.png&#39;</span><span class="p">,</span> 
-      <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> 
-      <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png"><img alt="../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png" src="../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png" style="width: 600px; height: 400px;" /></a>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="title-page">
+<h1>Title Page<a class="headerlink" href="#title-page" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
 </div>
 </section>
 
@@ -429,7 +398,7 @@ not as distinct Python objects.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./chapter2"
+            path: "./Data_Structures"
         },
         predefinedOutput: true
     }
@@ -446,6 +415,24 @@ not as distinct Python objects.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to Fluent Python Notes</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chapter1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><em>Overview of Built-In Sequences</em></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
