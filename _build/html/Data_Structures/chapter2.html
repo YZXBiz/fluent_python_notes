@@ -1,0 +1,1428 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Overview of Built-In Sequences &#8212; Fluent Python Notes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Data_Structures/chapter2';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Standard API of Mapping Types" href="chapter3.html" />
+    <link rel="prev" title="Overview of Built-In Sequences" href="chapter1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../README.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Fluent Python Notes</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../README.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">The Python Data Model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Overview of Built-In Sequences</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">Standard API of Mapping Types</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FData_Structures/chapter2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Data_Structures/chapter2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Overview of Built-In Sequences</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview of Built-In Sequences</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-are-not-just-immutable-lists">Tuples are not just Immutable Lists</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-records">Tuples as Records</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-immutable-lists">Tuples as Immutable Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-tuple-and-list-methods">Comparing Tuple and List Methods</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-sequences-and-iterables">Unpacking Sequences and Iterables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-to-grab-excess-items">Using * to grab excess items</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-with-in-function-calls-and-sequence-literals">Unpacking with * in Function Calls and Sequence Literals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-unpacking">Nested Unpacking</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">Slicing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-slices-and-rangs-exclude-the-last-item">Why Slices and Rangs Exclude the Last Item</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slice-objects">Slice Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-slicing-and-ellipsis">Multidimensional Slicing and Ellipsis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-to-slices">Assigning to Slices</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-with-sequences">Using + and * with Sequences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-of-lists">Building Lists of Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-assignment-with-sequences">Augmented Assignment with Sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-assignment-puzzler">A += Assignment Puzzler</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">list.sort and the sorted Built-In Function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-views">Memory Views</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-scipy">NumPy and SciPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deques-and-other-queues">Deques and Other Queues</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#soapbox">SoapBox</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-bag-lists">Mixed-Bag Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-algorithms">Sorting Algorithms</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell tag_remove-input docutils container">
+</div>
+<section class="tex2jax_ignore mathjax_ignore" id="overview-of-built-in-sequences">
+<h1>Overview of Built-In Sequences<a class="headerlink" href="#overview-of-built-in-sequences" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Container Sequences</p>
+<ul>
+<li><p>Can hold items of different types, including nested containers. Some examples: list, tuple, and collections.deque.</p></li>
+</ul>
+</li>
+<li><p>Flat Sequences</p>
+<ul>
+<li><p>Can hold items of one type. Some examples: str, bytes, bytearray, memoryview, and array.array.</p></li>
+<li><p>Because they can only hold one type, they are more compact in memory and faster to iterate over.</p></li>
+</ul>
+</li>
+</ul>
+<p>A container sequence stores items by keeping their addresses, while a flat sequence stores the actual items inside itself.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png"><img alt="../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png" src="../_images/b5da74fffe9d8f83b75367be4005ac862b3916199a3957e27151511cdd1cd871.png" style="width: 600px; height: 400px;" /></a>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Every Python object in memory has a head with meta data. For python object, a float, has a value field and two metadata fields:</p>
+<ul class="simple">
+<li><p>ob_refcnt: reference count</p></li>
+<li><p>ob_type: pointer to the object’s type</p></li>
+<li><p>ob_fval: the actual float value</p></li>
+</ul>
+<p>An array of floats is smaller than a tuple of floats because an array stores raw values directly, while a tuple stores separate float objects, each taking extra space.</p>
+</div>
+<p>Another way of grouping sequence types is by mutability:</p>
+<ul class="simple">
+<li><p>Mutable sequences: list, bytearray, array.array, collections.deque, and memoryview.</p></li>
+<li><p>Immutable sequences: tuple, str, and bytes.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">abc</span> 
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">Sequence</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">issubclass</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">MutableSequence</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+True
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see from below. MutuableSequence inherit all the methods from immutable sequence (which is sequence) and add some more methods to it.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png"><img alt="../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png" src="../_images/b92a6fff8f6f1763e6ce7aff099f50554746665fa7c1381204ebb6652066a5f6.png" style="width: 600px; height: 400px;" /></a>
+</div>
+</div>
+<p>Example in <a class="reference external" href="https://github.com/python/cpython/blob/main/Lib/_collections_abc.py">cpython/lib/_collections_abc.py</a></p>
+<p>We can see that the Sequence class is a subclass of Reversible and Collection. This means that all sequences must support the methods of these two classes.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Mutable vs Immutable AND container vs flat. They are helpful to extrapolate what you konw about one sequence type to others.</p>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="tuples-are-not-just-immutable-lists">
+<h1>Tuples are not just Immutable Lists<a class="headerlink" href="#tuples-are-not-just-immutable-lists" title="Link to this heading">#</a></h1>
+<section id="tuples-as-records">
+<h2>Tuples as Records<a class="headerlink" href="#tuples-as-records" title="Link to this heading">#</a></h2>
+<p>Because tuple’s items positions are fixed, it makes a good record. For example, a tuple to represent a city with name, year, and population.</p>
+<p>We often think of records as data structures with named fields, but the tuples are lightweight and require no extra memory to store field names. The tuple’s values are like fields in a record.</p>
+<p>Also, we can use tuple unpacking to assign the fields to variables.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Iterable unpacking is a generalization of tuple unpacking. It works with any iterable object.</p>
+</div>
+</section>
+<section id="tuples-as-immutable-lists">
+<h2>Tuples as Immutable Lists<a class="headerlink" href="#tuples-as-immutable-lists" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Clarity:</p>
+<ul>
+<li><p>when you see a tuple in code, you know it’s immutable.</p></li>
+</ul>
+</li>
+<li><p>Performance:</p>
+<ul>
+<li><p><strong>Tuple vs List Literals:</strong><br />
+The Python compiler creates a tuple literal in a single operation with one tuple constant. In contrast, a list literal is built by pushing each element separately and then assembling the list.</p></li>
+<li><p><strong>Copying Behavior:</strong><br />
+When you call <code class="docutils literal notranslate"><span class="pre">tuple(t)</span></code> on a tuple, it just returns the same tuple without copying. But calling <code class="docutils literal notranslate"><span class="pre">list(l)</span></code> on a list creates a new copy of that list.</p></li>
+<li><p><strong>Memory Allocation:</strong><br />
+A tuple’s fixed size means it uses exactly the memory it needs. Lists, however, are allocated extra space to make appending new items more efficient.</p></li>
+<li><p><strong>Storage of References:</strong><br />
+Tuples store their item references directly inside their structure. Lists, on the other hand, hold a pointer to an external array of references, and this extra level of indirection can lower CPU cache effectiveness.</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Immutability of a tuple only affects the tuple itself, not the items inside it. If the items are mutable, they can change.</p>
+<p>For example, if a tuple holds a list, the list can change in place. The tuple’s immutability only prevents reassigning the variable holding the tuple.</p>
+<p>To check if a tuple or any object has a fixed value, you can use hash()
+t1 = (1, 2, [30, 40])
+hash(t1)  # TypeError: unhashable type: ‘list’</p>
+<p>However, this could be a source of bugs, so it’s better to avoid mutable items in tuples.</p>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/591d214be24e6459c2171627bf59aa5d044922f127654b01fdec70bed37dc86b.png"><img alt="../_images/591d214be24e6459c2171627bf59aa5d044922f127654b01fdec70bed37dc86b.png" src="../_images/591d214be24e6459c2171627bf59aa5d044922f127654b01fdec70bed37dc86b.png" style="width: 600px; height: 400px;" /></a>
+</div>
+</div>
+</section>
+<section id="comparing-tuple-and-list-methods">
+<h2>Comparing Tuple and List Methods<a class="headerlink" href="#comparing-tuple-and-list-methods" title="Link to this heading">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tuples support all the read-only methods of lists except for <strong>reversed</strong>. This isn’t an issue because you can still use the built-in reversed() function since it works on any iterable.</p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="unpacking-sequences-and-iterables">
+<h1>Unpacking Sequences and Iterables<a class="headerlink" href="#unpacking-sequences-and-iterables" title="Link to this heading">#</a></h1>
+<p>Benefits of unpacking:</p>
+<ul class="simple">
+<li><p>It avoids uncessary and error-prone indexing.</p></li>
+<li><p>It works with any iterable objects (iterable is an object that implements the <strong>iter</strong> method), including generators and iterators which don’t support indexing.</p></li>
+<li><p>The only requirement is that the number of variables and the length of the iterable match. Either you use * to capture excess items or you unpack nested iterables.</p></li>
+</ul>
+<p>Unpacking a tuple</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lax_coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="mf">33.9425</span><span class="p">,</span> <span class="o">-</span><span class="mf">118.408056</span><span class="p">)</span>
+<span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span> <span class="o">=</span> <span class="n">lax_coordinates</span>
+</pre></div>
+</div>
+<p>An elegant way to swap variables:</p>
+<p>Another example of unpackign is prefixing an argument with * when calling a function. This is called <code class="docutils literal notranslate"><span class="pre">argument</span> <span class="pre">unpacking</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="nb">divmod</span><span class="p">(</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># (2, 4)</span>
+</pre></div>
+</div>
+<section id="using-to-grab-excess-items">
+<h2>Using * to grab excess items<a class="headerlink" href="#using-to-grab-excess-items" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">rest</span>  <span class="c1"># (0, 1, [2, 3, 4])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 1, [2, 3, 4])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span>  <span class="c1"># (0, 4, [1, 2, 3])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 4, 1, 2, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">head</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>  <span class="c1"># ([0, 1, 2], 3, 4)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([0, 1, 2], 3, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see from the examples above, the * operator can be used to grab excess items in the middle or at the end of a sequence.</p>
+</section>
+<section id="unpacking-with-in-function-calls-and-sequence-literals">
+<h2>Unpacking with * in Function Calls and Sequence Literals<a class="headerlink" href="#unpacking-with-in-function-calls-and-sequence-literals" title="Link to this heading">#</a></h2>
+<p>The * operator can also be used in function calls to unpack arguments. This is useful when you want to pass a sequence to a function that takes multiple arguments.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">fun</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+<span class="n">fun</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>  <span class="c1"># 1 2 3 (4, 5, 6)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 2 3 (4, 5, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The * can also be used when defining a sequence literal. This is useful when you want to concatenate multiple sequences.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">b</span><span class="p">]</span>
+<span class="n">c</span>  <span class="c1"># [1, 2, 3, 4, 5, 6]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 2, 3, 4, 5, 6]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">*</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># (0, 1, 2, 3, 4)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 1, 2, 3, 4)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="nested-unpacking">
+<h2>Nested Unpacking<a class="headerlink" href="#nested-unpacking" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metro_areas</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">&#39;Tokyo&#39;</span><span class="p">,</span> <span class="s1">&#39;JP&#39;</span><span class="p">,</span> <span class="mf">36.933</span><span class="p">,</span> <span class="p">(</span><span class="mf">35.689722</span><span class="p">,</span> <span class="mf">139.691667</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;Delhi NCR&#39;</span><span class="p">,</span> <span class="s1">&#39;IN&#39;</span><span class="p">,</span> <span class="mf">21.935</span><span class="p">,</span> <span class="p">(</span><span class="mf">28.613889</span><span class="p">,</span> <span class="mf">77.208889</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;Mexico City&#39;</span><span class="p">,</span> <span class="s1">&#39;MX&#39;</span><span class="p">,</span> <span class="mf">20.142</span><span class="p">,</span> <span class="p">(</span><span class="mf">19.433333</span><span class="p">,</span> <span class="o">-</span><span class="mf">99.133333</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;New York-Newark&#39;</span><span class="p">,</span> <span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="mf">20.104</span><span class="p">,</span> <span class="p">(</span><span class="mf">40.808611</span><span class="p">,</span> <span class="o">-</span><span class="mf">74.020386</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;Sao Paulo&#39;</span><span class="p">,</span> <span class="s1">&#39;BR&#39;</span><span class="p">,</span> <span class="mf">19.649</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mf">23.547778</span><span class="p">,</span> <span class="o">-</span><span class="mf">46.635833</span><span class="p">)),</span>
+<span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:15}</span><span class="s1"> | </span><span class="si">{:^9}</span><span class="s1"> | </span><span class="si">{:^9}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;lat.&#39;</span><span class="p">,</span> <span class="s1">&#39;long.&#39;</span><span class="p">))</span>
+    <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:15}</span><span class="s1"> | </span><span class="si">{:9.4f}</span><span class="s1"> | </span><span class="si">{:9.4f}</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">cc</span><span class="p">,</span> <span class="n">pop</span><span class="p">,</span> <span class="p">(</span><span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span> <span class="ow">in</span> <span class="n">metro_areas</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">longitude</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">))</span>
+
+<span class="c1"># Output</span>
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                |   lat.    |   long.  
+Mexico City     |   19.4333 |  -99.1333
+New York-Newark |   40.8086 |  -74.0204
+Sao Paulo       |  -23.5478 |  -46.6358
+</pre></div>
+</div>
+</div>
+</div>
+<p>Function here is using nested unpacking to extract the latitude and longitude from the tuple. This is a good example of how unpacking can make code more readable.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="slicing">
+<h1>Slicing<a class="headerlink" href="#slicing" title="Link to this heading">#</a></h1>
+<p>A common feature of list, tuple, str and all sequence types is slicing. It’s a way to extract a subset of items by specifying a start and end index. The slice is a <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">shallow</span> <span class="pre">copy</span></code> of the original sequence.</p>
+<section id="why-slices-and-rangs-exclude-the-last-item">
+<h2>Why Slices and Rangs Exclude the Last Item<a class="headerlink" href="#why-slices-and-rangs-exclude-the-last-item" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>It’s easy to see the length of a when only the stop position is given. range(3) and a[:3] both produce three items.</p></li>
+<li><p>It’s easy to compute the length of a slice or range when start and stop are given: just subtract stop - start.</p></li>
+<li><p>It’s easy to split a sequence in two parts at any index x, without overlapping: a[:x] and a[x:].</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
+<span class="n">l</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+<span class="c1"># ([10, 20], [30, 40, 50, 60])</span>
+</pre></div>
+</div>
+</section>
+<section id="slice-objects">
+<h2>Slice Objects<a class="headerlink" href="#slice-objects" title="Link to this heading">#</a></h2>
+<p>s[a:b:c] means slice s from a to b with step c. This is equivalent to s[slice(a, b, c)].</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;bicycle&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[::</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># &#39;bye&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># &#39;elcycib&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[::</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># &#39;eccb&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bye
+elcycib
+eccb
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The notation a:b:c is only valid within [] when it appears as the indexing or subscript operator. It is not valid syntax in any other context.</p>
+<p>To evaluate a slice, Python calls the special method <strong>getitem</strong>(slice(a, b, c)). If you pass a slice object s to the [] operator, Python calls s.<strong>getitem</strong>(obj).</p>
+</div>
+<p>A good use case for slice objects is to avoid hardcoding slice indices in your code. This makes your code more readable and maintainable.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">invoice</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">0.....6.................................40........52...55........</span>
+<span class="s2">1909  Pimoroni PiBrella                     $17.50    3    $52.50</span>
+<span class="s2">1489  6mm Tactile Switch x20                 $4.95    2     $9.90</span>
+<span class="s2">1510  Panavise Jr. - PV-201                 $28.00    1    $28.00</span>
+<span class="s2">1601  PiTFT Mini Kit 320x240                $34.95    1    $34.95</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">SKU</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">DESCRIPTION</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">UNIT_PRICE</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">52</span><span class="p">)</span>
+<span class="n">QUANTITY</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">52</span><span class="p">,</span> <span class="mi">55</span><span class="p">)</span>
+<span class="n">ITEM_TOTAL</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multidimensional-slicing-and-ellipsis">
+<h2>Multidimensional Slicing and Ellipsis<a class="headerlink" href="#multidimensional-slicing-and-ellipsis" title="Link to this heading">#</a></h2>
+<p>The [] operator can take multiple slices separated by commas. This is useful for multidimensional arrays.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">a</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># array([1, 5, 9])</span>
+</pre></div>
+</div>
+<p>Except for memoryview, the <code class="docutils literal notranslate"><span class="pre">built-in</span> <span class="pre">sequence</span> <span class="pre">types</span></code> are on-dimensional, so they support only one index or slice, and not a tuple of them.</p>
+<p>The ellipsis-written as <code class="docutils literal notranslate"><span class="pre">...</span></code> (this is three full stops, not the ASCII ellipsis character) is recognized as a token by the Python parser. It is an instance of the <code class="docutils literal notranslate"><span class="pre">ellipsis</span></code> object, the only one of its type. You can use it in place of one or more colons in a slicing specification.</p>
+<p>NumPy uses … as a shortcut when slicing arrays of many dimensions. For example, if x is a 4D array, x[i, …] is a shortcut for x[i, :, :, :,].</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="c1"># [[ 0  1  2  3]</span>
+<span class="c1">#  [ 4  5  6  7]</span>
+<span class="c1">#  [ 8  9 10 11]]</span>
+
+<span class="n">a</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="c1"># array([1, 5, 9])</span>
+</pre></div>
+</div>
+</section>
+<section id="assigning-to-slices">
+<h2>Assigning to Slices<a class="headerlink" href="#assigning-to-slices" title="Link to this heading">#</a></h2>
+<p>Mutable sequences can be grafted, excised and modified in place using slice notation on the left side of an assignment statement.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">l</span>
+<span class="c1"># [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+
+<span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+<span class="n">l</span>
+<span class="c1"># [0, 1, 20, 30, 5, 6, 7, 8, 9]</span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>When the target of the assignment is a slice, the right side must be an iterable object, even if it has just one item.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="c1"># TypeError: can only assign an iterable</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="using-and-with-sequences">
+<h1>Using + and * with Sequences<a class="headerlink" href="#using-and-with-sequences" title="Link to this heading">#</a></h1>
+<section id="building-lists-of-lists">
+<h2>Building Lists of Lists<a class="headerlink" href="#building-lists-of-lists" title="Link to this heading">#</a></h2>
+<p>Both + and * return a new sequence, and never modify their operands.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Be aware of expressions like a * n when a is a sequence containing mutable items. This will create a list with n references to the same mutable item. In other words, it’s a shallow copy and if the item is modified, all references will reflect the change.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="n">l</span>
+<span class="c1"># [[&#39;_&#39;, &#39;_&#39;, &#39;_&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;_&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;_&#39;]]</span>
+<span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>
+<span class="n">l</span>
+<span class="c1"># [[&#39;_&#39;, &#39;_&#39;, &#39;X&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;X&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;X&#39;]]</span>
+</pre></div>
+</div>
+<p>Essentially, this is behaves like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="n">board</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The correct way to create a list of lists is to use a list comprehension.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">l</span>
+<span class="c1"># [[&#39;_&#39;, &#39;_&#39;, &#39;_&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;_&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;_&#39;]]</span>
+<span class="n">l</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;X&#39;</span>
+<span class="n">l</span>
+<span class="c1"># [[&#39;_&#39;, &#39;_&#39;, &#39;_&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;X&#39;], [&#39;_&#39;, &#39;_&#39;, &#39;_&#39;]]</span>
+</pre></div>
+</div>
+<p>Above behaves like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">board</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
+    <span class="n">board</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="augmented-assignment-with-sequences">
+<h2>Augmented Assignment with Sequences<a class="headerlink" href="#augmented-assignment-with-sequences" title="Link to this heading">#</a></h2>
+<p>The dundar method __iadd__ is called when the += operator is used. If this method is not implemented, Python falls back to calling __add__. In this case, these two operations are equivalent.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="c1"># 140071366748992</span>
+<span class="n">l</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="n">l</span>
+<span class="c1"># [1, 2, 3, 1, 2, 3]</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="c1"># 140071366748992</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The identity of the object bound to a may or may not change after the operation. It depends on the avaialibility of __iadd__ method.</p>
+</div>
+<p>In general, for mutable sequences, like list, bytearray, and array.array, the __iadd__ method is implemented and it changes the target object in place.</p>
+<p>However, for immutable sequences, like tuple, str, and bytes, the __iadd__ method is not implemented.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="c1"># 140071366748992</span>
+<span class="n">l</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="n">l</span>
+<span class="c1"># [1, 2, 3, 1, 2, 3]</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="c1"># 140071366748992</span>
+<span class="n">t</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="c1"># 140071366748992</span>
+</pre></div>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Repeated concatenation of immutable sequences is inefficeint, because instead of just appending new items, Python has to copy the whole target sequence to create a new one with the new items concatenated.</p>
+</div>
+</section>
+<section id="a-assignment-puzzler">
+<h2>A += Assignment Puzzler<a class="headerlink" href="#a-assignment-puzzler" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
+<span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;tuple&#39; object does not support item assignment
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2, [30, 40, 50, 60])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>+= on a list first modifies the list in-place (which works)</p></li>
+<li><p>Then tries to assign the modified list back to the tuple (which fails)</p></li>
+<li><p>But by then, the list is already modified</p></li>
+</ul>
+<p>Let’s take a closeer look at the bytecode.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dis</span>
+<span class="n">dis</span><span class="o">.</span><span class="n">dis</span><span class="p">(</span><span class="s2">&quot;s[a] += b&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0           0 RESUME                   0
+
+  1           2 LOAD_NAME                0 (s)
+              4 LOAD_NAME                1 (a)
+              6 COPY                     2
+              8 COPY                     2
+             10 BINARY_SUBSCR
+             20 LOAD_NAME                2 (b)
+             22 BINARY_OP               13 (+=)
+             26 SWAP                     3
+             28 SWAP                     2
+             30 STORE_SUBSCR
+             34 LOAD_CONST               0 (None)
+             36 RETURN_VALUE
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Bytecode Explanation</em></p>
+<ul class="simple">
+<li><p>The bytecode shows that s[a] += b (which corresponds to t[2] += [50, 60]) is actually a sequence of operations:</p></li>
+<li><p>LOAD_NAME and COPY operations: Load the container (t) and index (2)
+BINARY_SUBSCR: Get the item at t[2] (the list [30, 40])</p></li>
+<li><p>LOAD_NAME: Load the value to add ([50, 60])
+BINARY_OP (+=): Perform the augmented assignment, modifying the list in place</p></li>
+<li><p>STORE_SUBSCR: Try to store the result back into the original location t[2]
+The critical insight is that step 4 successfully modifies the list, but step 5 fails because tuples don’t allow item assignment.</p></li>
+<li><p>This is why the list inside the tuple is modified even though the code raises an exception - the mutation happens before the assignment attempt that fails.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul class="simple">
+<li><p>Avoid putting mutable items in tuples</p>
+<ul>
+<li><p>It’s confusing because while you can’t change the tuple itself, its mutable contents can change</p></li>
+</ul>
+</li>
+<li><p>Augmented assignment (+=) isn’t a single operation</p>
+<ul>
+<li><p>It does two things: modifies the value AND tries to store it back</p></li>
+<li><p>This split behavior can lead to surprising “half-done” results when it fails</p></li>
+</ul>
+</li>
+<li><p>Looking at Python’s internal instructions can be helpful</p>
+<ul>
+<li><p>Seeing how Python breaks down your code helps understand these strange behaviors</p></li>
+<li><p>It’s not as complicated as it seems and reveals what’s really happening</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="list-sort-and-the-sorted-built-in-function">
+<h1>list.sort and the sorted Built-In Function<a class="headerlink" href="#list-sort-and-the-sorted-built-in-function" title="Link to this heading">#</a></h1>
+<p>The list.sort method sorts a list in place–that is, without makign a copy. It returns None to remind us that it changes the target object, and does not create a new list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a common pattern in Python: functions or methods that change an object in place should return None to make it clear to the caller that the object itself was changed, and no new object was created.</p>
+</div>
+<p>However, this also has a drawback. You can’t chain multiple methods teogether. For example, you can’t call sort() and then call another method on the same line.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grape&#39;</span><span class="p">,</span> <span class="s1">&#39;raspberry&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">]</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c1"># returns None</span>
+
+<span class="c1"># Can&#39;t do this</span>
+<span class="n">fruits</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="c1"># AttributeError: &#39;NoneType&#39; object has no attribute &#39;reverse&#39;</span>
+</pre></div>
+</div>
+<p>And of course, method that returns a new object can be chained together.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grape&#39;</span><span class="p">,</span> <span class="s1">&#39;raspberry&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fruits</span><span class="p">)</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="n">result</span>
+</pre></div>
+</div>
+<p>Sorted accepts any iterable object, including immutable sequences and generators. Regardless of the type of the input, sorted always returns a newly created list.</p>
+<p>Both list.sort and sorted take two optional, keyword-only arguments:</p>
+<ul class="simple">
+<li><p>reverse: If True, the items are returned in descending order. The default is False.</p></li>
+<li><p>key: A one-argument function that <code class="docutils literal notranslate"><span class="pre">will</span> <span class="pre">be</span> <span class="pre">applied</span> <span class="pre">to</span> <span class="pre">each</span> <span class="pre">item</span> <span class="pre">to</span> <span class="pre">produce</span> <span class="pre">its</span> <span class="pre">sorting</span> <span class="pre">key</span></code>. For example, when sorting a list of strings, you can use str.lower as the key to perform a case-insensitive sort. Then, Python compares the key-transformed values to determine the final order.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;grape&#39;</span><span class="p">,</span> <span class="s1">&#39;raspberry&#39;</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;banana&#39;</span><span class="p">]</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">fruits</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
+<span class="c1"># [&#39;apple&#39;, &#39;grape&#39;, &#39;banana&#39;, &#39;raspberry&#39;]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, Python sorts strings lexicographically by character code. ASCII uppercase letters come before lowercase letters. Sorting Unicode Text can be more complex.</p>
+</div>
+<p>Once your sequences are sorted, they can be very efficiently searched using the bisect module (binary search). THe python module bisect.insort also make sure that the list remains sorted after inserting a new item.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="when-a-list-is-not-the-answer">
+<h1>When a List is Not the Answer<a class="headerlink" href="#when-a-list-is-not-the-answer" title="Link to this heading">#</a></h1>
+<p>The list is flexible and easy to use but it’s not always the best choice. Here are some alternatives:</p>
+<ul class="simple">
+<li><p>Array: A more efficient way to store a sequence of basic values like numbers. It can save a lot of memory when you need to handle millions of floating point values. The reason is that an array is just a thin wrapper around a C array, which means it doesn’t store the type of each item, just the value VS a list which stores the type of each item.</p></li>
+<li><p>Deque (doulbe-ended queue): A thread-safe list designed for fast inserting and removing from both ends.</p></li>
+<li><p>Set: If you need to constantly check for the existence of an item, a set is more appropriate. It has a constant time complexity for this operation, while a list has a linear time complexity.</p></li>
+</ul>
+<section id="arrays">
+<h2>Arrays<a class="headerlink" href="#arrays" title="Link to this heading">#</a></h2>
+<p>If a list only contains numbers, an array.array is more efficient. It stores the numbers in a compact, contiguous block of memory, and it’s more efficient than a list for some operations.</p>
+<p>It supports all mutable sequence operations (including .pop, .insert, and .extend), and additional methods for fast loading and saving such as .frombytes and .tofile.</p>
+<p>A Python array is as lean as C array. An array of float values does not hold full-fledged float instances, but only the packed bytes representing their machine values-similar to an array of double in the C language.</p>
+<p>When creating an array, you provide a typecode, a letter to specify the type of items in the array. For example, ‘d’ for double-precision floating-point numbers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">array</span><span class="w"> </span><span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">random</span>
+
+<span class="n">floats</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">)))</span>
+<span class="n">floats</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># 0.47160296998661593</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;floats.bin&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">floats</span><span class="o">.</span><span class="n">tofile</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">floats2</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+<span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;floats.bin&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">floats2</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">floats2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="c1"># 0.47160296998661593</span>
+<span class="n">floats2</span> <span class="o">==</span> <span class="n">floats</span>
+<span class="c1"># True</span>
+</pre></div>
+</div>
+<p>You can see here array.tofile and array.fromfile are easy to use. They are also very fast because they write or read the whole array in one shot. Of course, they also save a lot of memory than reading from a text file.</p>
+<p>Specifically, there are some common typecodes:</p>
+<p>“d”
+: double precision float. Each item takes 8 bytes.</p>
+<p>“b”
+: signed char. Each item takes 1 byte.</p>
+<p>“B”
+: unsigned char. Each item takes 1 byte.</p>
+<p>“u”
+: Unicode character. Each item takes 2 bytes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can imagine that once typecode is specified, the array will only store the values in that type. This is why it’s more efficient than a list.</p>
+</div>
+</section>
+<section id="memory-views">
+<h2>Memory Views<a class="headerlink" href="#memory-views" title="Link to this heading">#</a></h2>
+<p>The built-in memoryview class is a shared-memory sequence type that lets you handle slices of arrays without copying bytes. It’s a good way to expose the buffer protocol in Python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">array</span><span class="w"> </span><span class="kn">import</span> <span class="n">array</span> 
+
+<span class="n">octets</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">octets</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(&#39;B&#39;, [0, 1, 2, 3, 4, 5])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">octets</span><span class="p">)</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0, 1, 2], [3, 4, 5]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m3</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">m3</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0, 1], [2, 3], [4, 5]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">22</span>
+<span class="n">m3</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">33</span>
+<span class="n">octets</span>
+
+<span class="c1"># The memory was shared among octets, m1, m2, and m3 </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(&#39;B&#39;, [0, 1, 2, 3, 22, 33])
+</pre></div>
+</div>
+</div>
+</div>
+<p>A memory is essentially a generalized NumPy array structure in Python. It allows you to share memory between data-structures (like arrays) without copying bytes. This is useful when you have a large amount of data and you want to avoid copying it.</p>
+</section>
+<section id="numpy-and-scipy">
+<h2>NumPy and SciPy<a class="headerlink" href="#numpy-and-scipy" title="Link to this heading">#</a></h2>
+<p>Most NumPy and SciPy functions are implemented in C or C++, and can leverage all CPU cores because they release Python’s GIL (Global Interpreter Lock).</p>
+<p>THe Dask project supports paralleizing Numpy, Pandas, and Scikit-Learn across clusters of machines.</p>
+</section>
+<section id="deques-and-other-queues">
+<h2>Deques and Other Queues<a class="headerlink" href="#deques-and-other-queues" title="Link to this heading">#</a></h2>
+<p>The .append and .pop methods of a list are fast, but inserting or removing items from the left of a list is slow because it requires shifting all elements by one.</p>
+<p>The class collections.deque is a thread-safe double-ended queue designed for fast inserting and removing from both ends. It’s a great choice when you need to keep a list of items and efficiently add or remove items from both ends.</p>
+<p>It is also the way to go if you need to keep a list of “last seen items” or a list of “last n items” because a deque can be bounded–i.e., created with a maximum length–so that it never grows beyond that limit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span> 
+
+<span class="n">dq</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([7, 8, 9, 0, 1, 2, 3, 4, 5, 6], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Rotating with n &gt; 0 takes items from the right end and prepends them to the left. Rotating with n &lt; 0 takes items from the left end and appends them to the right.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Appending to a dequa that is full(len(d) == d.maxlen) discards items from the other end. This is useful for sliding windows, where you only need to keep the last n items.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([-1, 1, 2, 3, 4, 5, 6, 7, 8, 9], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">33</span><span class="p">])</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([3, 4, 5, 6, 7, 8, 9, 11, 22, 33], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">extendleft</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([40, 30, 20, 10, 3, 4, 5, 6, 7, 8], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<p>I think you can guess what above two do :)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is really optimized for appending and popping from the ends. So,removing items from the middle of a deque is not as fast as removing from the ends.</p>
+</div>
+<p>A deque (double-ended queue) is perfect for creating a FIFO queue (first-in, first-out, like a line at a store) in programs where multiple parts run simultaneously because its core operations—adding items to one end and removing from the other—are “atomic.”</p>
+<p>This means these operations complete fully without interruption, like a transaction that either happens completely or not at all.</p>
+<p>Without this guarantee, different parts of your program could interfere with each other when accessing the same queue, potentially causing data corruption or errors. Python’s deque handles this protection automatically, saving you from having to write complex code to coordinate access to the queue, making it both safer and simpler to use.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="soapbox">
+<h1>SoapBox<a class="headerlink" href="#soapbox" title="Link to this heading">#</a></h1>
+<section id="mixed-bag-lists">
+<h2>Mixed-Bag Lists<a class="headerlink" href="#mixed-bag-lists" title="Link to this heading">#</a></h2>
+<p>Introductory Python texts emphasize that lists can contain objects of mixed types, but this is not a good idea in practice. We put items in a list to process them later, which implies that all items should support at least some operation in common. For example, you can’t sort a list unless the items in it are comparable to each other.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+<span class="c1"># TypeError: &#39;&lt;&#39; not supported between instances of &#39;str&#39; and &#39;int&#39;</span>
+</pre></div>
+</div>
+<p>Unlike lists, tuples often hold items of different types. That’s natural because if each tiem in a tuple is a field (again, tuple as data record here), then each field may have a different type.</p>
+</section>
+<section id="sorting-algorithms">
+<h2>Sorting Algorithms<a class="headerlink" href="#sorting-algorithms" title="Link to this heading">#</a></h2>
+<p>Sorting Algorithms in Python Explained Simply
+Timsort (used in Python’s sorting functions) is a clever algorithm that combines two different sorting approaches to be more efficient:</p>
+<p><strong>Insertion sort</strong>: Works like sorting a hand of playing cards - you pick up one card at a time and insert it into its correct position among the cards you’re already holding. This works very well for small sets of data.</p>
+<p><strong>Merge sort</strong>: Works by splitting data into smaller chunks, sorting each chunk, then carefully combining them back together. This is good for large amounts of data.</p>
+<p>What makes Timsort special is that it analyzes your data first, looking for parts that are already in order (which happens often in real data). It then uses the most appropriate method for each section. For example, if your data is partially sorted already, Timsort detects these ordered sections and processes them more efficiently, making it faster than other sorting methods in many real-world situations.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Data_Structures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><em>Overview of Built-In Sequences</em></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chapter3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Standard API of Mapping Types</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview of Built-In Sequences</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-are-not-just-immutable-lists">Tuples are not just Immutable Lists</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-records">Tuples as Records</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-immutable-lists">Tuples as Immutable Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-tuple-and-list-methods">Comparing Tuple and List Methods</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-sequences-and-iterables">Unpacking Sequences and Iterables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-to-grab-excess-items">Using * to grab excess items</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-with-in-function-calls-and-sequence-literals">Unpacking with * in Function Calls and Sequence Literals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-unpacking">Nested Unpacking</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">Slicing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-slices-and-rangs-exclude-the-last-item">Why Slices and Rangs Exclude the Last Item</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slice-objects">Slice Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-slicing-and-ellipsis">Multidimensional Slicing and Ellipsis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-to-slices">Assigning to Slices</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-with-sequences">Using + and * with Sequences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-of-lists">Building Lists of Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-assignment-with-sequences">Augmented Assignment with Sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-assignment-puzzler">A += Assignment Puzzler</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">list.sort and the sorted Built-In Function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-views">Memory Views</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-scipy">NumPy and SciPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deques-and-other-queues">Deques and Other Queues</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#soapbox">SoapBox</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-bag-lists">Mixed-Bag Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-algorithms">Sorting Algorithms</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jackson (Zhuoxin) Yang
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
