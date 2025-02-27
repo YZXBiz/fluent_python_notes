@@ -407,6 +407,8 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">8. When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">8.1. Arrays</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-views">8.2. Memory Views</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-scipy">8.3. NumPy and SciPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deques-and-other-queues">8.4. Deques and Other Queues</a></li>
 </ul>
 </li>
 </ul>
@@ -1057,19 +1059,181 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 <section id="memory-views">
 <h2><span class="section-number">8.2. </span>Memory Views<a class="headerlink" href="#memory-views" title="Link to this heading">#</a></h2>
 <p>The built-in memoryview class is a shared-memory sequence type that lets you handle slices of arrays without copying bytes. It’s a good way to expose the buffer protocol in Python.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">array</span><span class="w"> </span><span class="kn">import</span> <span class="n">array</span>
-<span class="n">octets</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="n">m1</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">octets</span><span class="p">)</span>
-<span class="n">m1</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="c1"># [0, 1, 2, 3, 4]</span>
-<span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">m2</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-<span class="c1"># [2, 3, 4]</span>
-<span class="n">m2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">22</span>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">array</span><span class="w"> </span><span class="kn">import</span> <span class="n">array</span> 
+
+<span class="n">octets</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
 <span class="n">octets</span>
-<span class="c1"># array(&#39;B&#39;, [0, 1, 22, 3, 4])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(&#39;B&#39;, [0, 1, 2, 3, 4, 5])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">octets</span><span class="p">)</span>
+<span class="n">m1</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">m2</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0, 1, 2], [3, 4, 5]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m3</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">m3</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0, 1], [2, 3], [4, 5]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">22</span>
+<span class="n">m3</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">33</span>
+<span class="n">octets</span>
+
+<span class="c1"># The memory was shared among octets, m1, m2, and m3 </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array(&#39;B&#39;, [0, 1, 2, 3, 22, 33])
+</pre></div>
+</div>
+</div>
+</div>
+<p>A memory is essentially a generalized NumPy array structure in Python. It allows you to share memory between data-structures (like arrays) without copying bytes. This is useful when you have a large amount of data and you want to avoid copying it.</p>
+</section>
+<section id="numpy-and-scipy">
+<h2><span class="section-number">8.3. </span>NumPy and SciPy<a class="headerlink" href="#numpy-and-scipy" title="Link to this heading">#</a></h2>
+<p>Most NumPy and SciPy functions are implemented in C or C++, and can leverage all CPU cores because they release Python’s GIL (Global Interpreter Lock).</p>
+<p>THe Dask project supports paralleizing Numpy, Pandas, and Scikit-Learn across clusters of machines.</p>
+</section>
+<section id="deques-and-other-queues">
+<h2><span class="section-number">8.4. </span>Deques and Other Queues<a class="headerlink" href="#deques-and-other-queues" title="Link to this heading">#</a></h2>
+<p>The .append and .pop methods of a list are fast, but inserting or removing items from the left of a list is slow because it requires shifting all elements by one.</p>
+<p>The class collections.deque is a thread-safe double-ended queue designed for fast inserting and removing from both ends. It’s a great choice when you need to keep a list of items and efficiently add or remove items from both ends.</p>
+<p>It is also the way to go if you need to keep a list of “last seen items” or a list of “last n items” because a deque can be bounded–i.e., created with a maximum length–so that it never grows beyond that limit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span> 
+
+<span class="n">dq</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">maxlen</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([7, 8, 9, 0, 1, 2, 3, 4, 5, 6], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Rotating with n &gt; 0 takes items from the right end and prepends them to the left. Rotating with n &lt; 0 takes items from the left end and appends them to the right.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([1, 2, 3, 4, 5, 6, 7, 8, 9, 0], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Appending to a dequa that is full(len(d) == d.maxlen) discards items from the other end. This is useful for sliding windows, where you only need to keep the last n items.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([-1, 1, 2, 3, 4, 5, 6, 7, 8, 9], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">33</span><span class="p">])</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([3, 4, 5, 6, 7, 8, 9, 11, 22, 33], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dq</span><span class="o">.</span><span class="n">extendleft</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+<span class="n">dq</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>deque([40, 30, 20, 10, 3, 4, 5, 6, 7, 8], maxlen=10)
+</pre></div>
+</div>
+</div>
+</div>
+<p>I think you can guess what above two do :)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is really optimized for appending and popping from the ends. So,removing items from the middle of a deque is not as fast as removing from the ends.</p>
+</div>
+<p>A deque (double-ended queue) is perfect for creating a FIFO queue (first-in, first-out, like a line at a store) in programs where multiple parts run simultaneously because its core operations—adding items to one end and removing from the other—are “atomic.”</p>
+<p>This means these operations complete fully without interruption, like a transaction that either happens completely or not at all.</p>
+<p>Without this guarantee, different parts of your program could interfere with each other when accessing the same queue, potentially causing data corruption or errors. Python’s deque handles this protection automatically, saving you from having to write complex code to coordinate access to the queue, making it both safer and simpler to use.</p>
 </section>
 </section>
 
@@ -1158,6 +1322,8 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">8. When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">8.1. Arrays</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-views">8.2. Memory Views</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-scipy">8.3. NumPy and SciPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deques-and-other-queues">8.4. Deques and Other Queues</a></li>
 </ul>
 </li>
 </ul>
