@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Overview of Built-In Sequences &#8212; Fluent Python Notes</title>
+    <title>Overview of Built-In Sequences &#8212; Fluent Python Notes</title>
   
   
   
@@ -60,8 +60,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Data_Structures/chapter2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="10. Standard API of Mapping Types" href="chapter3.html" />
-    <link rel="prev" title="1. Overview of Built-In Sequences" href="chapter1.html" />
+    <link rel="next" title="Standard API of Mapping Types" href="chapter3.html" />
+    <link rel="prev" title="Overview of Built-In Sequences" href="chapter1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -175,8 +175,8 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Structures</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. The Python Data Model</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Overview of Built-In Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">The Python Data Model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Overview of Built-In Sequences</a></li>
 
 
 
@@ -184,7 +184,7 @@
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="chapter3.html">10. Standard API of Mapping Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter3.html">Standard API of Mapping Types</a></li>
 
 </ul>
 
@@ -381,43 +381,43 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2. Overview of Built-In Sequences</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-are-not-just-immutable-lists">3. Tuples are not just Immutable Lists</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-records">3.1. Tuples as Records</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-immutable-lists">3.2. Tuples as Immutable Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-tuple-and-list-methods">3.3. Comparing Tuple and List Methods</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview of Built-In Sequences</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-are-not-just-immutable-lists">Tuples are not just Immutable Lists</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-records">Tuples as Records</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-immutable-lists">Tuples as Immutable Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-tuple-and-list-methods">Comparing Tuple and List Methods</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-sequences-and-iterables">4. Unpacking Sequences and Iterables</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-to-grab-excess-items">4.1. Using * to grab excess items</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-with-in-function-calls-and-sequence-literals">4.2. Unpacking with * in Function Calls and Sequence Literals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-unpacking">4.3. Nested Unpacking</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-sequences-and-iterables">Unpacking Sequences and Iterables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-to-grab-excess-items">Using * to grab excess items</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-with-in-function-calls-and-sequence-literals">Unpacking with * in Function Calls and Sequence Literals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-unpacking">Nested Unpacking</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">5. Slicing</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-slices-and-rangs-exclude-the-last-item">5.1. Why Slices and Rangs Exclude the Last Item</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slice-objects">5.2. Slice Objects</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-slicing-and-ellipsis">5.3. Multidimensional Slicing and Ellipsis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-to-slices">5.4. Assigning to Slices</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">Slicing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-slices-and-rangs-exclude-the-last-item">Why Slices and Rangs Exclude the Last Item</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slice-objects">Slice Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-slicing-and-ellipsis">Multidimensional Slicing and Ellipsis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-to-slices">Assigning to Slices</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-with-sequences">6. Using + and * with Sequences</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-of-lists">6.1. Building Lists of Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-assignment-with-sequences">6.2. Augmented Assignment with Sequences</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-assignment-puzzler">6.3. A += Assignment Puzzler</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-with-sequences">Using + and * with Sequences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-of-lists">Building Lists of Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-assignment-with-sequences">Augmented Assignment with Sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-assignment-puzzler">A += Assignment Puzzler</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">7. list.sort and the sorted Built-In Function</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">8. When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">8.1. Arrays</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-views">8.2. Memory Views</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-scipy">8.3. NumPy and SciPy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deques-and-other-queues">8.4. Deques and Other Queues</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">list.sort and the sorted Built-In Function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-views">Memory Views</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-scipy">NumPy and SciPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deques-and-other-queues">Deques and Other Queues</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#soapbox">9. SoapBox</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-bag-lists">9.1. Mixed-Bag Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-algorithms">9.2. Sorting Algorithms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#soapbox">SoapBox</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-bag-lists">Mixed-Bag Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-algorithms">Sorting Algorithms</a></li>
 </ul>
 </li>
 </ul>
@@ -435,7 +435,7 @@ document.write(`
   <div class="cell tag_remove-input docutils container">
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="overview-of-built-in-sequences">
-<h1><span class="section-number">2. </span>Overview of Built-In Sequences<a class="headerlink" href="#overview-of-built-in-sequences" title="Link to this heading">#</a></h1>
+<h1>Overview of Built-In Sequences<a class="headerlink" href="#overview-of-built-in-sequences" title="Link to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Container Sequences</p>
 <ul>
@@ -499,9 +499,9 @@ True
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="tuples-are-not-just-immutable-lists">
-<h1><span class="section-number">3. </span>Tuples are not just Immutable Lists<a class="headerlink" href="#tuples-are-not-just-immutable-lists" title="Link to this heading">#</a></h1>
+<h1>Tuples are not just Immutable Lists<a class="headerlink" href="#tuples-are-not-just-immutable-lists" title="Link to this heading">#</a></h1>
 <section id="tuples-as-records">
-<h2><span class="section-number">3.1. </span>Tuples as Records<a class="headerlink" href="#tuples-as-records" title="Link to this heading">#</a></h2>
+<h2>Tuples as Records<a class="headerlink" href="#tuples-as-records" title="Link to this heading">#</a></h2>
 <p>Because tuple’s items positions are fixed, it makes a good record. For example, a tuple to represent a city with name, year, and population.</p>
 <p>We often think of records as data structures with named fields, but the tuples are lightweight and require no extra memory to store field names. The tuple’s values are like fields in a record.</p>
 <p>Also, we can use tuple unpacking to assign the fields to variables.</p>
@@ -511,7 +511,7 @@ True
 </div>
 </section>
 <section id="tuples-as-immutable-lists">
-<h2><span class="section-number">3.2. </span>Tuples as Immutable Lists<a class="headerlink" href="#tuples-as-immutable-lists" title="Link to this heading">#</a></h2>
+<h2>Tuples as Immutable Lists<a class="headerlink" href="#tuples-as-immutable-lists" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Clarity:</p>
 <ul>
@@ -547,7 +547,7 @@ hash(t1)  # TypeError: unhashable type: ‘list’</p>
 </div>
 </section>
 <section id="comparing-tuple-and-list-methods">
-<h2><span class="section-number">3.3. </span>Comparing Tuple and List Methods<a class="headerlink" href="#comparing-tuple-and-list-methods" title="Link to this heading">#</a></h2>
+<h2>Comparing Tuple and List Methods<a class="headerlink" href="#comparing-tuple-and-list-methods" title="Link to this heading">#</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Tuples support all the read-only methods of lists except for <strong>reversed</strong>. This isn’t an issue because you can still use the built-in reversed() function since it works on any iterable.</p>
@@ -555,7 +555,7 @@ hash(t1)  # TypeError: unhashable type: ‘list’</p>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="unpacking-sequences-and-iterables">
-<h1><span class="section-number">4. </span>Unpacking Sequences and Iterables<a class="headerlink" href="#unpacking-sequences-and-iterables" title="Link to this heading">#</a></h1>
+<h1>Unpacking Sequences and Iterables<a class="headerlink" href="#unpacking-sequences-and-iterables" title="Link to this heading">#</a></h1>
 <p>Benefits of unpacking:</p>
 <ul class="simple">
 <li><p>It avoids uncessary and error-prone indexing.</p></li>
@@ -574,7 +574,7 @@ hash(t1)  # TypeError: unhashable type: ‘list’</p>
 </pre></div>
 </div>
 <section id="using-to-grab-excess-items">
-<h2><span class="section-number">4.1. </span>Using * to grab excess items<a class="headerlink" href="#using-to-grab-excess-items" title="Link to this heading">#</a></h2>
+<h2>Using * to grab excess items<a class="headerlink" href="#using-to-grab-excess-items" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -617,7 +617,7 @@ hash(t1)  # TypeError: unhashable type: ‘list’</p>
 <p>As you can see from the examples above, the * operator can be used to grab excess items in the middle or at the end of a sequence.</p>
 </section>
 <section id="unpacking-with-in-function-calls-and-sequence-literals">
-<h2><span class="section-number">4.2. </span>Unpacking with * in Function Calls and Sequence Literals<a class="headerlink" href="#unpacking-with-in-function-calls-and-sequence-literals" title="Link to this heading">#</a></h2>
+<h2>Unpacking with * in Function Calls and Sequence Literals<a class="headerlink" href="#unpacking-with-in-function-calls-and-sequence-literals" title="Link to this heading">#</a></h2>
 <p>The * operator can also be used in function calls to unpack arguments. This is useful when you want to pass a sequence to a function that takes multiple arguments.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -664,7 +664,7 @@ hash(t1)  # TypeError: unhashable type: ‘list’</p>
 </div>
 </section>
 <section id="nested-unpacking">
-<h2><span class="section-number">4.3. </span>Nested Unpacking<a class="headerlink" href="#nested-unpacking" title="Link to this heading">#</a></h2>
+<h2>Nested Unpacking<a class="headerlink" href="#nested-unpacking" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metro_areas</span> <span class="o">=</span> <span class="p">[</span>
@@ -700,10 +700,10 @@ Sao Paulo       |  -23.5478 |  -46.6358
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="slicing">
-<h1><span class="section-number">5. </span>Slicing<a class="headerlink" href="#slicing" title="Link to this heading">#</a></h1>
+<h1>Slicing<a class="headerlink" href="#slicing" title="Link to this heading">#</a></h1>
 <p>A common feature of list, tuple, str and all sequence types is slicing. It’s a way to extract a subset of items by specifying a start and end index. The slice is a <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">shallow</span> <span class="pre">copy</span></code> of the original sequence.</p>
 <section id="why-slices-and-rangs-exclude-the-last-item">
-<h2><span class="section-number">5.1. </span>Why Slices and Rangs Exclude the Last Item<a class="headerlink" href="#why-slices-and-rangs-exclude-the-last-item" title="Link to this heading">#</a></h2>
+<h2>Why Slices and Rangs Exclude the Last Item<a class="headerlink" href="#why-slices-and-rangs-exclude-the-last-item" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>It’s easy to see the length of a when only the stop position is given. range(3) and a[:3] both produce three items.</p></li>
 <li><p>It’s easy to compute the length of a slice or range when start and stop are given: just subtract stop - start.</p></li>
@@ -716,7 +716,7 @@ Sao Paulo       |  -23.5478 |  -46.6358
 </div>
 </section>
 <section id="slice-objects">
-<h2><span class="section-number">5.2. </span>Slice Objects<a class="headerlink" href="#slice-objects" title="Link to this heading">#</a></h2>
+<h2>Slice Objects<a class="headerlink" href="#slice-objects" title="Link to this heading">#</a></h2>
 <p>s[a:b:c] means slice s from a to b with step c. This is equivalent to s[slice(a, b, c)].</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -757,7 +757,7 @@ eccb
 </div>
 </section>
 <section id="multidimensional-slicing-and-ellipsis">
-<h2><span class="section-number">5.3. </span>Multidimensional Slicing and Ellipsis<a class="headerlink" href="#multidimensional-slicing-and-ellipsis" title="Link to this heading">#</a></h2>
+<h2>Multidimensional Slicing and Ellipsis<a class="headerlink" href="#multidimensional-slicing-and-ellipsis" title="Link to this heading">#</a></h2>
 <p>The [] operator can take multiple slices separated by commas. This is useful for multidimensional arrays.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
@@ -780,7 +780,7 @@ eccb
 </div>
 </section>
 <section id="assigning-to-slices">
-<h2><span class="section-number">5.4. </span>Assigning to Slices<a class="headerlink" href="#assigning-to-slices" title="Link to this heading">#</a></h2>
+<h2>Assigning to Slices<a class="headerlink" href="#assigning-to-slices" title="Link to this heading">#</a></h2>
 <p>Mutable sequences can be grafted, excised and modified in place using slice notation on the left side of an assignment statement.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">l</span>
@@ -802,9 +802,9 @@ eccb
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="using-and-with-sequences">
-<h1><span class="section-number">6. </span>Using + and * with Sequences<a class="headerlink" href="#using-and-with-sequences" title="Link to this heading">#</a></h1>
+<h1>Using + and * with Sequences<a class="headerlink" href="#using-and-with-sequences" title="Link to this heading">#</a></h1>
 <section id="building-lists-of-lists">
-<h2><span class="section-number">6.1. </span>Building Lists of Lists<a class="headerlink" href="#building-lists-of-lists" title="Link to this heading">#</a></h2>
+<h2>Building Lists of Lists<a class="headerlink" href="#building-lists-of-lists" title="Link to this heading">#</a></h2>
 <p>Both + and * return a new sequence, and never modify their operands.</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
@@ -843,7 +843,7 @@ eccb
 </div>
 </section>
 <section id="augmented-assignment-with-sequences">
-<h2><span class="section-number">6.2. </span>Augmented Assignment with Sequences<a class="headerlink" href="#augmented-assignment-with-sequences" title="Link to this heading">#</a></h2>
+<h2>Augmented Assignment with Sequences<a class="headerlink" href="#augmented-assignment-with-sequences" title="Link to this heading">#</a></h2>
 <p>The dundar method __iadd__ is called when the += operator is used. If this method is not implemented, Python falls back to calling __add__. In this case, these two operations are equivalent.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="nb">id</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
@@ -882,7 +882,7 @@ eccb
 </div>
 </section>
 <section id="a-assignment-puzzler">
-<h2><span class="section-number">6.3. </span>A += Assignment Puzzler<a class="headerlink" href="#a-assignment-puzzler" title="Link to this heading">#</a></h2>
+<h2>A += Assignment Puzzler<a class="headerlink" href="#a-assignment-puzzler" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
@@ -979,7 +979,7 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="list-sort-and-the-sorted-built-in-function">
-<h1><span class="section-number">7. </span>list.sort and the sorted Built-In Function<a class="headerlink" href="#list-sort-and-the-sorted-built-in-function" title="Link to this heading">#</a></h1>
+<h1>list.sort and the sorted Built-In Function<a class="headerlink" href="#list-sort-and-the-sorted-built-in-function" title="Link to this heading">#</a></h1>
 <p>The list.sort method sorts a list in place–that is, without makign a copy. It returns None to remind us that it changes the target object, and does not create a new list.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1018,7 +1018,7 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 <p>Once your sequences are sorted, they can be very efficiently searched using the bisect module (binary search). THe python module bisect.insort also make sure that the list remains sorted after inserting a new item.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="when-a-list-is-not-the-answer">
-<h1><span class="section-number">8. </span>When a List is Not the Answer<a class="headerlink" href="#when-a-list-is-not-the-answer" title="Link to this heading">#</a></h1>
+<h1>When a List is Not the Answer<a class="headerlink" href="#when-a-list-is-not-the-answer" title="Link to this heading">#</a></h1>
 <p>The list is flexible and easy to use but it’s not always the best choice. Here are some alternatives:</p>
 <ul class="simple">
 <li><p>Array: A more efficient way to store a sequence of basic values like numbers. It can save a lot of memory when you need to handle millions of floating point values. The reason is that an array is just a thin wrapper around a C array, which means it doesn’t store the type of each item, just the value VS a list which stores the type of each item.</p></li>
@@ -1026,7 +1026,7 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 <li><p>Set: If you need to constantly check for the existence of an item, a set is more appropriate. It has a constant time complexity for this operation, while a list has a linear time complexity.</p></li>
 </ul>
 <section id="arrays">
-<h2><span class="section-number">8.1. </span>Arrays<a class="headerlink" href="#arrays" title="Link to this heading">#</a></h2>
+<h2>Arrays<a class="headerlink" href="#arrays" title="Link to this heading">#</a></h2>
 <p>If a list only contains numbers, an array.array is more efficient. It stores the numbers in a compact, contiguous block of memory, and it’s more efficient than a list for some operations.</p>
 <p>It supports all mutable sequence operations (including .pop, .insert, and .extend), and additional methods for fast loading and saving such as .frombytes and .tofile.</p>
 <p>A Python array is as lean as C array. An array of float values does not hold full-fledged float instances, but only the packed bytes representing their machine values-similar to an array of double in the C language.</p>
@@ -1066,7 +1066,7 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 </div>
 </section>
 <section id="memory-views">
-<h2><span class="section-number">8.2. </span>Memory Views<a class="headerlink" href="#memory-views" title="Link to this heading">#</a></h2>
+<h2>Memory Views<a class="headerlink" href="#memory-views" title="Link to this heading">#</a></h2>
 <p>The built-in memoryview class is a shared-memory sequence type that lets you handle slices of arrays without copying bytes. It’s a good way to expose the buffer protocol in Python.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1141,12 +1141,12 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 <p>A memory is essentially a generalized NumPy array structure in Python. It allows you to share memory between data-structures (like arrays) without copying bytes. This is useful when you have a large amount of data and you want to avoid copying it.</p>
 </section>
 <section id="numpy-and-scipy">
-<h2><span class="section-number">8.3. </span>NumPy and SciPy<a class="headerlink" href="#numpy-and-scipy" title="Link to this heading">#</a></h2>
+<h2>NumPy and SciPy<a class="headerlink" href="#numpy-and-scipy" title="Link to this heading">#</a></h2>
 <p>Most NumPy and SciPy functions are implemented in C or C++, and can leverage all CPU cores because they release Python’s GIL (Global Interpreter Lock).</p>
 <p>THe Dask project supports paralleizing Numpy, Pandas, and Scikit-Learn across clusters of machines.</p>
 </section>
 <section id="deques-and-other-queues">
-<h2><span class="section-number">8.4. </span>Deques and Other Queues<a class="headerlink" href="#deques-and-other-queues" title="Link to this heading">#</a></h2>
+<h2>Deques and Other Queues<a class="headerlink" href="#deques-and-other-queues" title="Link to this heading">#</a></h2>
 <p>The .append and .pop methods of a list are fast, but inserting or removing items from the left of a list is slow because it requires shifting all elements by one.</p>
 <p>The class collections.deque is a thread-safe double-ended queue designed for fast inserting and removing from both ends. It’s a great choice when you need to keep a list of items and efficiently add or remove items from both ends.</p>
 <p>It is also the way to go if you need to keep a list of “last seen items” or a list of “last n items” because a deque can be bounded–i.e., created with a maximum length–so that it never grows beyond that limit.</p>
@@ -1246,9 +1246,9 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="soapbox">
-<h1><span class="section-number">9. </span>SoapBox<a class="headerlink" href="#soapbox" title="Link to this heading">#</a></h1>
+<h1>SoapBox<a class="headerlink" href="#soapbox" title="Link to this heading">#</a></h1>
 <section id="mixed-bag-lists">
-<h2><span class="section-number">9.1. </span>Mixed-Bag Lists<a class="headerlink" href="#mixed-bag-lists" title="Link to this heading">#</a></h2>
+<h2>Mixed-Bag Lists<a class="headerlink" href="#mixed-bag-lists" title="Link to this heading">#</a></h2>
 <p>Introductory Python texts emphasize that lists can contain objects of mixed types, but this is not a good idea in practice. We put items in a list to process them later, which implies that all items should support at least some operation in common. For example, you can’t sort a list unless the items in it are comparable to each other.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 <span class="nb">sorted</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
@@ -1258,7 +1258,7 @@ The critical insight is that step 4 successfully modifies the list, but step 5 f
 <p>Unlike lists, tuples often hold items of different types. That’s natural because if each tiem in a tuple is a field (again, tuple as data record here), then each field may have a different type.</p>
 </section>
 <section id="sorting-algorithms">
-<h2><span class="section-number">9.2. </span>Sorting Algorithms<a class="headerlink" href="#sorting-algorithms" title="Link to this heading">#</a></h2>
+<h2>Sorting Algorithms<a class="headerlink" href="#sorting-algorithms" title="Link to this heading">#</a></h2>
 <p>Sorting Algorithms in Python Explained Simply
 Timsort (used in Python’s sorting functions) is a clever algorithm that combines two different sorting approaches to be more efficient:</p>
 <p><strong>Insertion sort</strong>: Works like sorting a hand of playing cards - you pick up one card at a time and insert it into its correct position among the cards you’re already holding. This works very well for small sets of data.</p>
@@ -1303,7 +1303,7 @@ Timsort (used in Python’s sorting functions) is a clever algorithm that combin
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span><em>Overview of Built-In Sequences</em></p>
+        <p class="prev-next-title"><em>Overview of Built-In Sequences</em></p>
       </div>
     </a>
     <a class="right-next"
@@ -1311,7 +1311,7 @@ Timsort (used in Python’s sorting functions) is a clever algorithm that combin
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">10. </span>Standard API of Mapping Types</p>
+        <p class="prev-next-title">Standard API of Mapping Types</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1331,43 +1331,43 @@ Timsort (used in Python’s sorting functions) is a clever algorithm that combin
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2. Overview of Built-In Sequences</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-are-not-just-immutable-lists">3. Tuples are not just Immutable Lists</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-records">3.1. Tuples as Records</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-immutable-lists">3.2. Tuples as Immutable Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-tuple-and-list-methods">3.3. Comparing Tuple and List Methods</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Overview of Built-In Sequences</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-are-not-just-immutable-lists">Tuples are not just Immutable Lists</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-records">Tuples as Records</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tuples-as-immutable-lists">Tuples as Immutable Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-tuple-and-list-methods">Comparing Tuple and List Methods</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-sequences-and-iterables">4. Unpacking Sequences and Iterables</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-to-grab-excess-items">4.1. Using * to grab excess items</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-with-in-function-calls-and-sequence-literals">4.2. Unpacking with * in Function Calls and Sequence Literals</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-unpacking">4.3. Nested Unpacking</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-sequences-and-iterables">Unpacking Sequences and Iterables</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-to-grab-excess-items">Using * to grab excess items</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unpacking-with-in-function-calls-and-sequence-literals">Unpacking with * in Function Calls and Sequence Literals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-unpacking">Nested Unpacking</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">5. Slicing</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-slices-and-rangs-exclude-the-last-item">5.1. Why Slices and Rangs Exclude the Last Item</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slice-objects">5.2. Slice Objects</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-slicing-and-ellipsis">5.3. Multidimensional Slicing and Ellipsis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-to-slices">5.4. Assigning to Slices</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing">Slicing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-slices-and-rangs-exclude-the-last-item">Why Slices and Rangs Exclude the Last Item</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slice-objects">Slice Objects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-slicing-and-ellipsis">Multidimensional Slicing and Ellipsis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assigning-to-slices">Assigning to Slices</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-with-sequences">6. Using + and * with Sequences</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-of-lists">6.1. Building Lists of Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-assignment-with-sequences">6.2. Augmented Assignment with Sequences</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-assignment-puzzler">6.3. A += Assignment Puzzler</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#using-and-with-sequences">Using + and * with Sequences</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-lists-of-lists">Building Lists of Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#augmented-assignment-with-sequences">Augmented Assignment with Sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-assignment-puzzler">A += Assignment Puzzler</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">7. list.sort and the sorted Built-In Function</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">8. When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">8.1. Arrays</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-views">8.2. Memory Views</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-scipy">8.3. NumPy and SciPy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deques-and-other-queues">8.4. Deques and Other Queues</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#list-sort-and-the-sorted-built-in-function">list.sort and the sorted Built-In Function</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-list-is-not-the-answer">When a List is Not the Answer</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-views">Memory Views</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-and-scipy">NumPy and SciPy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deques-and-other-queues">Deques and Other Queues</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#soapbox">9. SoapBox</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-bag-lists">9.1. Mixed-Bag Lists</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-algorithms">9.2. Sorting Algorithms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#soapbox">SoapBox</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixed-bag-lists">Mixed-Bag Lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-algorithms">Sorting Algorithms</a></li>
 </ul>
 </li>
 </ul>
